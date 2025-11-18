@@ -2,12 +2,12 @@ import { useState } from "react";
 
 export const NavbarCart = () => {
   /**
-   * No logic for setting cart count yet. Perhaps pass the ?
+   * No logic for setting cart count yet. Need to use cart context.
    */
   const [cartCount, setCartCount] = useState(1);
 
   return (
-    <div className="relative flex items-center space-x-2">
+    <div className="relative flex items-center space-x-2 pr-2">
       <a href="/cart" className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"

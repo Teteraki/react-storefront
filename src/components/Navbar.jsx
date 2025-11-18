@@ -48,6 +48,7 @@ export const Navbar = () => {
             </div>
 
             <div className="flex items-center gap-4">
+              <NavbarCart />
               <div className="sm:flex sm:gap-4">
                 <a
                   className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
@@ -56,7 +57,7 @@ export const Navbar = () => {
                   Login
                 </a>
               </div>
-              <NavbarCart />
+
               {/* <div className="block md:hidden">
           <button className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
             <svg xmlns="http://www.w3.org/2000/svg" className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

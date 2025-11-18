@@ -1,15 +1,23 @@
 export const HeroBanner = () => {
-  const images = [
-    "https://cdn.pixabay.com/photo/2016/09/02/12/47/jeans-1639100_1280.jpg",
-    "https://cdn.pixabay.com/photo/2018/09/10/13/14/hands-3667030_1280.jpg",
-    "https://cdn.pixabay.com/photo/2021/11/06/12/27/leather-jacket-6773269_1280.jpg",
-  ];
-
   return (
-    <section className="bg-[url('https://cdn.pixabay.com/photo/2021/11/06/12/27/leather-jacket-6773269_1280.jpg')] bg-cover bg-center">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative py-10 w-full overflow-hidden">
+      {/* Background video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+        src="https://cdn.pixabay.com/video/2024/04/29/209895_large.mp4"
+      />
+
+      {/* Optional dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Hero content (same as your original) */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 lg:py-46">
-          <h1 className="text-3xl font-bold  text-gray-100 sm:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-bold text-gray-100 sm:text-4xl lg:text-5xl">
             Shop the latest fits.
           </h1>
 
