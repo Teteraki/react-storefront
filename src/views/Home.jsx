@@ -1,6 +1,6 @@
-import { BrowseCategories } from "../components/BrowseCategories";
+import { CategoryContainer } from "../components/categories/CategoryContainer";
 import { HeroBanner } from "../components/HeroBanner";
-import { ProductContainer } from "../components/ProductContainer";
+import { ProductContainer } from "../components/products/ProductContainer";
 
 export const Home = ({ products, loading, error }) => {
   return (
@@ -14,7 +14,7 @@ export const Home = ({ products, loading, error }) => {
         itemsPerPage={4}
         containerTitle={"Featured Apparel"}
       />
-      <BrowseCategories
+      <CategoryContainer
         categories={[...new Set(products.map((p) => p.category))]}
       />
     </>

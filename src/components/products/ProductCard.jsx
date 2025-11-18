@@ -1,5 +1,5 @@
 //hyper ui card modified
-import { getCategoryImage } from "../data/categoryImages.js";
+import { getCategoryImage } from "../../data/categoryImages.js";
 
 export const ProductCard = ({ product }) => {
   // types of images based on Tops, Bottoms, Sweaters, Outerwear, Dresses, Jumpsuits

@@ -1,4 +1,4 @@
-import { getCategoryImage } from "../data/categoryImages.js";
+import { getCategoryImage } from "../../data/categoryImages";
 
 export const CategoryCard = ({ category }) => {
   return (
