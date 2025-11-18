@@ -7,7 +7,7 @@ export const CategoryCard = ({ category }) => {
         className="rounded-md h-64 w-full object-cover sm:h-80 lg:h-96"
       ></img>
 
-      <h3 className="text-center mt-4 text-lg  text-gray-900 sm:text-xl">
+      <h3 className="text-center mt-4 text-lg text-gray-900 sm:text-xl">
         {category}
       </h3>
     </a>
