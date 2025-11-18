@@ -1,17 +1,18 @@
 import "./App.css";
 import { Navbar } from "./components/Navbar";
-import { HeroBanner } from "./components/HeroBanner";
+
 import { useProducts } from "./hooks/useProducts";
-import { FeaturedContainer } from "./components/FeaturedContainer";
+
 import { Footer } from "./components/Footer";
+import { Home } from "./views/Home";
 
 export const App = () => {
-  const { products, error } = useProducts();
+  const { products, loading, error } = useProducts();
 
   // if (error) return <div>{error.message}</div>;
 
   return (
-    <>
+    <div>
       {/* <ul>
         {products.map((p, i) => (
           <li key={i}>{JSON.stringify(p)}</li>
@@ -19,9 +20,8 @@ export const App = () => {
       </ul> */}
 
       <Navbar />
-      <HeroBanner />
-      <FeaturedContainer products={products.slice(0, 12)} />
+      <Home products={products} error={error} loading={loading} />
       <Footer />
-    </>
+    </div>
   );
 };

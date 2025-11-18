@@ -15,8 +15,8 @@ export const Navbar = () => {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-">
           <div className="flex h-16 items-center justify-between">
             <a className="block text-teal-600" href="/">
-              <div class="flex justify-center text-teal-600">
-                <span class="text-2xl font-bold">Storefront </span>
+              <div className="flex justify-center text-teal-600">
+                <span className="text-2xl font-bold">Storefront </span>
                 <p> by Dylan Sanders</p>
               </div>
             </a>

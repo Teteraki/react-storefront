@@ -43,7 +43,7 @@ export const ProductCard = ({ product }) => {
       <img
         src={getCategoryImage(product.category).image}
         alt=""
-        className="h-[350px] w-full object-cover sm:h-[450px]"
+        className="rounded-md h-[350px] w-full object-cover sm:h-[450px]"
       ></img>
 
       <div className="mt-3 flex justify-between text-sm">

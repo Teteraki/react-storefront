@@ -27,10 +27,10 @@ export const HeroBanner = () => {
 
           <div className="mt-6 flex gap-3">
             <a
-              href="/browse"
+              href="#browse-categories"
               className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
             >
-              Browse collection
+              Browse categories
             </a>
           </div>
         </div>
