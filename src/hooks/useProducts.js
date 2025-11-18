@@ -4,6 +4,7 @@ const URL =
   "https://gist.githubusercontent.com/rconnolly/d37a491b50203d66d043c26f33dbd798/raw/37b5b68c527ddbe824eaed12073d266d5455432a/clothing-compact.json";
 
 export const useProducts = () => {
+  console.log("useProducts hook called");
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,9 +12,11 @@ export const useProducts = () => {
   useEffect(() => {
     const asyncFetch = async () => {
       try {
+        console.log("Fetching products from API...");
         const res = await fetch(URL);
 
         if (!res.ok) {
+          console.error("Failed to fetch products:", res.statusText);
           throw new Error("HTTP ERROR: " + res.status);
         }
 
