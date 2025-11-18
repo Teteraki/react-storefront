@@ -30,14 +30,14 @@ export const FeaturedContainer = ({ products }) => {
             <button
               type="button"
               onClick={handlePrev}
-              className="rounded-full border border-teal-600 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+              className="rounded-full bg-teal-600 text-white px-3  text-lg  hover:bg-teal-700"
             >
               ‹
             </button>
             <button
               type="button"
               onClick={handleNext}
-              className="rounded-full border border-teal-600 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+              className="rounded-full bg-teal-600 text-white px-3  text-lg  hover:bg-teal-700"
             >
               ›
             </button>

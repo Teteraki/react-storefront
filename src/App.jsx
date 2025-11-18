@@ -2,8 +2,9 @@ import "./App.css";
 import { Navbar } from "./components/Navbar";
 import { HeroBanner } from "./components/HeroBanner";
 import { useProducts } from "./hooks/useProducts";
-import { ProductCard } from "./components/ProductCard";
 import { FeaturedContainer } from "./components/FeaturedContainer";
+import { Footer } from "./components/Footer";
+
 export const App = () => {
   const { products, error } = useProducts();
 
@@ -20,6 +21,7 @@ export const App = () => {
       <Navbar />
       <HeroBanner />
       <FeaturedContainer products={products.slice(0, 12)} />
+      <Footer />
     </>
   );
 };
