@@ -12,7 +12,6 @@ export const useProducts = () => {
   useEffect(() => {
     const asyncFetch = async () => {
       try {
-        console.log("Fetching products from API...");
         const res = await fetch(URL);
 
         if (!res.ok) {
@@ -21,6 +20,7 @@ export const useProducts = () => {
         }
 
         const data = await res.json();
+        console.log("Fetching products from API...");
         setProducts(data);
       } catch (err) {
         setError(err);

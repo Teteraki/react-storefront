@@ -1,10 +1,11 @@
 import "./App.css";
-import { Navbar } from "./components/navbar/Navbar";
-
+import { Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
 
+import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./views/Home";
+import { Browse } from "./views/Browse";
 
 export const App = () => {
   const { products, loading, error } = useProducts();
@@ -13,14 +14,21 @@ export const App = () => {
 
   return (
     <div>
-      {/* <ul>
-        {products.map((p, i) => (
-          <li key={i}>{JSON.stringify(p)}</li>
-        ))}
-      </ul> */}
-
       <Navbar />
-      <Home products={products} error={error} loading={loading} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={<Home products={products} error={error} loading={loading} />}
+        />
+        <Route
+          path="/browse"
+          element={
+            <Browse products={products} error={error} loading={loading} />
+          }
+        />
+      </Routes>
+
       <Footer />
     </div>
   );
