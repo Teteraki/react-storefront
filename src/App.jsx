@@ -6,8 +6,10 @@ import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
+import { BrowseContainer } from "./components/browse/BrowseContainer";
 
 export const App = () => {
+
   const { products, loading, error } = useProducts();
 
   // if (error) return <div>{error.message}</div>;
@@ -28,7 +30,7 @@ export const App = () => {
           }
         />
       </Routes>
-
+          
       <Footer />
     </div>
   );
