@@ -1,7 +1,7 @@
-export const FilterDropdown = ({title, colors}) => {
+export const FilterDropdown = ({ title, filters }) => {
     return(
 
-                <details className="overflow-hidden rounded-sm border border-gray-300 [&_summary::-webkit-details-marker]:hidden" open>
+                <details className="overflow-hidden rounded-sm border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
                   <summary className="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition">
                     <span className="text-sm font-medium">{title}</span>
 
@@ -33,19 +33,19 @@ export const FilterDropdown = ({title, colors}) => {
                     </header>
 
                     <ul className="space-y-1 border-t border-gray-200 p-4">
-                      {colors.map((color) => (
-                        <li key={color}>
+                      {filters.map((filter) => (
+                        <li key={filter}>
                           <label
-                            htmlFor={`Filter${color}`}
+                            htmlFor={`Filter${filter}`}
                             className="inline-flex items-center gap-2"
                           >
                             <input
                               type="checkbox"
-                              id={`Filter${color}`}
-                              className="size-5 rounded-sm border-gray-300 shadow-sm"
+                              id={filter}
+                              className="size-5 rounded-sm border-gray-300 shadow-sm bg-teal-600"
                             />
 
-                            <span className="text-sm font-medium text-gray-700">{color}</span>
+                            <span className="text-sm font-medium text-gray-700">{filter}</span>
                           </label>
                         </li>
                       ))}
