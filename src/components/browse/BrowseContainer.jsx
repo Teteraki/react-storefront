@@ -1,14 +1,35 @@
 import { useState } from "react";
 import { ProductContainer } from "../products/ProductContainer";
 import { FilterDropdown } from "./FilterDropdown";
-
+import { SelectedFilterPill } from "./SelectedFilterPill";
 export const BrowseContainer = ({ products, loading, error }) => {
 
-    const [filters, setFilters] = useState([]);
+
+
+    
+
+    const [filters, setFilters] = useState({
+      category: [],
+      colors: [],
+      size: [],
+      
+    });
+
+    
 
     const clearFilters = () => {
-        setFilters([])
+        setFilters({
+      category: [],
+      colors: [],
+      size: [],
+      
+    })
     }
+    const removeFilter = (type, filter) => {
+      setFilters(filters => ({...filters, type: [filters.type, filter] }))
+    }
+
+    const addFilter = (type, filter)
 
   return (
     <section>
@@ -49,6 +70,13 @@ export const BrowseContainer = ({ products, loading, error }) => {
                 <option value="Price, ASC">Price, ASC</option>
               </select>
             </div>
+    <div className="space-x-2 space-y-2">
+            {/* {filters.map((f) => <SelectedFilterPill filter={"test"} />)} */}
+            
+            
+            <SelectedFilterPill filter={[{colors: "red"}, {size: "XS"}]} />
+    </div>
+          
 
             <div>
               <p className="block text-xs font-medium text-gray-700">Filters</p>
