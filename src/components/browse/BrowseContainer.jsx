@@ -25,11 +25,8 @@ export const BrowseContainer = ({ products, loading, error }) => {
       
     })
     }
-    const removeFilter = (type, filter) => {
-      setFilters(filters => ({...filters, type: [filters.type, filter] }))
-    }
 
-    const addFilter = (type, filter)
+
 
   return (
     <section>
@@ -71,10 +68,10 @@ export const BrowseContainer = ({ products, loading, error }) => {
               </select>
             </div>
     <div className="space-x-2 space-y-2">
-            {/* {filters.map((f) => <SelectedFilterPill filter={"test"} />)} */}
+         <SelectedFilterPill filter={"test"} />
             
             
-            <SelectedFilterPill filter={[{colors: "red"}, {size: "XS"}]} />
+    
     </div>
           
 
