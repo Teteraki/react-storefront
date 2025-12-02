@@ -1,5 +1,8 @@
 export const SelectedFilterPill = ({ filters, toggleFilter }) => {
   return (
+    <div className="space-x-2 space-y-2">
+
+    
     <div className="flex flex-wrap gap-2">
 
     {/* USING KEYS AS THE FILTERS ARE IN AN OBJECT CONTAINING ARRAYS INSIDE*/}
@@ -33,6 +36,7 @@ export const SelectedFilterPill = ({ filters, toggleFilter }) => {
         ))
       )}
 
+    </div>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ProductContainer } from "../products/ProductContainer";
-import { FilterDropdown } from "./FilterDropdown";
-import { SelectedFilterPill } from "./SelectedFilterPill";
+import { FilterDropdown } from "./filter/FilterDropdown";
+import { SelectedFilterPill } from "./filter/SelectedFilterPill";
+import { SortDropdown } from "./sort/SortDropdown";
 export const BrowseContainer = ({ products, loading, error }) => {
 
-
+    // Object for holding filter specific arrays (makes sense in my head to do this to implement additive filters).
     const [filters, setFilters] = useState({
       category: [],
       colors: [],
@@ -12,17 +13,7 @@ export const BrowseContainer = ({ products, loading, error }) => {
       
     });
 
-  
-   const toggleFilter = (group, value) => {
-    setFilters(prev => ({
-    ...prev,
-    [group]: prev[group].includes(value)
-      ? prev[group].filter(v => v !== value) // remove
-      : [...prev[group], value]              // add
-  }));
-};
-
-    
+    // Clear all filters with reset button.
     const clearFilters = () => {
         setFilters({
       category: [],
@@ -32,7 +23,28 @@ export const BrowseContainer = ({ products, loading, error }) => {
     })
     }
 
+    // Toggle a specific filter.
+    const toggleFilter = (group, value) => {
+    setFilters(prev => ({
+    ...prev,
+    [group]: prev[group].includes(value)
+      ? prev[group].filter(v => v !== value) // remove
+      : [...prev[group], value]              // add
+  }));
+};
 
+    // Filter the products.
+    const filteredProducts = products.filter(product => {
+
+      // Truthful statement to return all products by default
+      const matchCategory = filters.category.length === 0 || filters.category.includes(product.category); 
+      const matchColors = filters.colors.length === 0 || filters.colors.includes(product.color);
+      const matchSizes = filters.size.length === 0 || filters.size.includes(size)
+
+      // Additive filtering.
+      return matchCategory && matchColors && matchSizes;
+    })
+  
   return (
     <section>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -59,36 +71,20 @@ export const BrowseContainer = ({ products, loading, error }) => {
 
         <div className="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
           <div className="hidden space-y-4 lg:block">
-            <div>
-              <label htmlFor="SortBy" className="block text-xs font-medium text-gray-700">
-                Sort By
-              </label>
+            <SortDropdown />
+          
 
-              <select id="SortBy" className="mt-1 rounded-sm border-gray-300 text-sm">
-                <option>Sort By</option>
-                <option value="Title, DESC">Title, DESC</option>
-                <option value="Title, ASC">Title, ASC</option>
-                <option value="Price, DESC">Price, DESC</option>
-                <option value="Price, ASC">Price, ASC</option>
-              </select>
-            </div>
-    <div className="space-x-2 space-y-2">
+              <SelectedFilterPill filters={filters} toggleFilter={toggleFilter}  />
 
-         <SelectedFilterPill
-  filters={filters}
-  toggleFilter={toggleFilter}
-/>
+        
+          
 
-            
-            
-    
-    </div>
             <div>
               <p className="block text-xs font-medium text-gray-700">Filters</p>
                       <button type="button" onClick={clearFilters} className="text-sm text-gray-900 underline underline-offset-4">
                         Reset {console.log(filters)}
                       </button>
-              <div className="mt-1 space-y-2">
+             <div className="mt-1 space-y-2">
 
                
                 <FilterDropdown title="Category" onToggle={(value) => toggleFilter("category", value)} selected={filters.category} filters={[...new Set(products.map((p) => p.category))]} />
@@ -100,9 +96,9 @@ export const BrowseContainer = ({ products, loading, error }) => {
 
           {/* PRODUCT GRID */}
 
-              <div className="lg:col-span-3">
+            <div className="lg:col-span-3">
             <ProductContainer
-              products={products}
+              products={filteredProducts}
               error={error}
               loading={loading}
               itemsPerPage={12}
