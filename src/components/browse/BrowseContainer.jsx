@@ -73,7 +73,12 @@ export const BrowseContainer = ({ products, loading, error }) => {
               </select>
             </div>
     <div className="space-x-2 space-y-2">
-         <SelectedFilterPill filter={"test"} />
+
+         <SelectedFilterPill
+  filters={filters}
+  toggleFilter={toggleFilter}
+/>
+
             
             
     
