@@ -5,9 +5,6 @@ import { SelectedFilterPill } from "./SelectedFilterPill";
 export const BrowseContainer = ({ products, loading, error }) => {
 
 
-
-    
-
     const [filters, setFilters] = useState({
       category: [],
       colors: [],
@@ -15,8 +12,17 @@ export const BrowseContainer = ({ products, loading, error }) => {
       
     });
 
-    
+  
+   const toggleFilter = (group, value) => {
+    setFilters(prev => ({
+    ...prev,
+    [group]: prev[group].includes(value)
+      ? prev[group].filter(v => v !== value) // remove
+      : [...prev[group], value]              // add
+  }));
+};
 
+    
     const clearFilters = () => {
         setFilters({
       category: [],
@@ -25,7 +31,6 @@ export const BrowseContainer = ({ products, loading, error }) => {
       
     })
     }
-
 
 
   return (
@@ -73,17 +78,17 @@ export const BrowseContainer = ({ products, loading, error }) => {
             
     
     </div>
-          
-
             <div>
               <p className="block text-xs font-medium text-gray-700">Filters</p>
-
+                      <button type="button" onClick={clearFilters} className="text-sm text-gray-900 underline underline-offset-4">
+                        Reset {console.log(filters)}
+                      </button>
               <div className="mt-1 space-y-2">
 
                
-                <FilterDropdown title="Category" filters={[...new Set(products.map((p) => p.category))]} />
-                <FilterDropdown title="Sizes" filters={["XS","S","M","L","XL"]} />
-                <FilterDropdown title="Colors" filters={[... new Set(products.map((p) => p.color[0].name))]} />
+                <FilterDropdown title="Category" onToggle={(value) => toggleFilter("category", value)} selected={filters.category} filters={[...new Set(products.map((p) => p.category))]} />
+                <FilterDropdown title="Sizes" onToggle={(value) => toggleFilter("size", value)} selected={filters.size} filters={["XS","S","M","L","XL"]} />
+                <FilterDropdown title="Colors" onToggle={(value) => toggleFilter("colors", value)} selected={filters.colors} filters={[... new Set(products.map((p) => p.color[0].name))]} />
               </div>
             </div>
           </div>
