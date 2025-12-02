@@ -3,6 +3,7 @@ import { ProductContainer } from "../products/ProductContainer";
 import { FilterDropdown } from "./filter/FilterDropdown";
 import { SelectedFilterPill } from "./filter/SelectedFilterPill";
 import { SortDropdown } from "./sort/SortDropdown";
+
 export const BrowseContainer = ({ products, loading, error }) => {
 
     // Object for holding filter specific arrays (makes sense in my head to do this to implement additive filters).
@@ -33,6 +34,11 @@ export const BrowseContainer = ({ products, loading, error }) => {
   }));
 };
 
+
+    const [sortBy, setSortBy] = useState("Name, ASC");
+
+    
+
     // Filter the products.
     const filteredProducts = products.filter(product => {
 
@@ -44,7 +50,41 @@ export const BrowseContainer = ({ products, loading, error }) => {
       // Additive filtering.
       return matchCategory && matchColors && matchSizes;
     })
-  
+
+    // Sort the products after filter, if it is on the default label Sort By, immediately return and do not sort.
+    // Prog 3: Data Structures knowledge coming in handy here!
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+      if (!sortBy) return 0;
+
+      const [field, direction] = sortBy.split(", ").map(v => v.trim());
+      const dir = direction === "ASC" ? 1 : -1;
+
+      switch (field) {
+        case "Name": {
+          const nameA = a.name || "";
+          const nameB = b.name || "";
+          return nameA.localeCompare(nameB) * dir;
+        }
+
+        case "Price": {
+          const priceA = a.price ?? 0;
+          const priceB = b.price ?? 0;
+          return (priceA - priceB) * dir;
+        }
+
+        case "Category": {
+          const catA = a.category || "";
+          const catB = b.category || "";
+          return catA.localeCompare(catB) * dir;
+        }
+
+        default:
+          return 0;
+      }
+    });
+
+
+
   return (
     <section>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -71,10 +111,12 @@ export const BrowseContainer = ({ products, loading, error }) => {
 
         <div className="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
           <div className="hidden space-y-4 lg:block">
-            <SortDropdown />
+            
+            
+            <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
           
 
-              <SelectedFilterPill filters={filters} toggleFilter={toggleFilter}  />
+            <SelectedFilterPill filters={filters} toggleFilter={toggleFilter}  />
 
         
           
@@ -98,7 +140,7 @@ export const BrowseContainer = ({ products, loading, error }) => {
 
             <div className="lg:col-span-3">
             <ProductContainer
-              products={filteredProducts}
+              products={sortedProducts}
               error={error}
               loading={loading}
               itemsPerPage={12}

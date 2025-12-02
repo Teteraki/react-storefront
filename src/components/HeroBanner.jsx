@@ -1,4 +1,4 @@
-export const HeroBanner = () => {
+export const HeroBanner = ({videoURL, header, subtext, anchorText, href}) => {
   return (
     <section className="relative py-10 w-full overflow-hidden">
       {/* Background video */}
@@ -8,7 +8,7 @@ export const HeroBanner = () => {
         muted
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
-        src="https://cdn.pixabay.com/video/2024/04/29/209895_large.mp4"
+        src={videoURL}
       />
 
       {/* Optional dark overlay for readability */}
@@ -18,19 +18,19 @@ export const HeroBanner = () => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 lg:py-46">
           <h1 className="text-3xl font-bold text-gray-100 sm:text-4xl lg:text-5xl">
-            Shop the latest fits.
+            {header}
           </h1>
 
           <p className="mt-4 max-w-2xl text-gray-100">
-            Curated streetwear and essentials for everyday life.
+            {subtext}
           </p>
 
           <div className="mt-6 flex gap-3">
             <a
-              href="#browse-categories"
+              href={href}
               className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
             >
-              Browse categories
+             {anchorText}
             </a>
           </div>
         </div>
