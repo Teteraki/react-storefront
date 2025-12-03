@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getCategoryImage } from "../../data/categoryImages.js";
 import { useCart } from "../../hooks/cartContext.jsx";
 import { CartToast } from "../cart/CartToast.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   const [showToast, setShowToast] = useState(false);
@@ -16,10 +16,10 @@ export const ProductCard = ({ product }) => {
 
   return (
     <div className="group block border rounded-md overflow-hidden shadow hover:shadow-lg transition">
-      {/* Clickable image and name */}
+     
       <div
         className="cursor-pointer"
-        onClick={() => navigate(`/product/${product.id}`)}
+        // onClick={null} NEED TO FIX
       >
         <img
           src={getCategoryImage(product.category).image}
@@ -36,7 +36,7 @@ export const ProductCard = ({ product }) => {
         </div>
       </div>
 
-      {/* Price and Add to Cart */}
+      {/* // Price and Add to Cart  */}
       <div className="flex justify-between items-center p-3 border-t border-gray-200">
         <p className="text-gray-900 font-semibold">${product.price.toFixed(2)}</p>
 
