@@ -9,6 +9,7 @@ import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
 import { Men } from "./views/Men";
 import { Women } from "./views/Women";
+import { CartProvider } from "./hooks/cartContext";
 
 
 export const App = () => {
@@ -19,6 +20,9 @@ export const App = () => {
 
   return (
     <div>
+      <CartProvider>
+
+      
       <Navbar />
 
       <Routes>
@@ -38,6 +42,12 @@ export const App = () => {
           path="/women"
           element={
             <Women products={products} error={error} loading={loading} />
+          }
+        />
+        <Route
+          path="/browse"
+          element={
+            <Browse products={products} error={error} loading={loading} />
           }
         />
 
@@ -70,6 +80,8 @@ export const App = () => {
       </Routes>
           
       <Footer />
+
+      </CartProvider>
     </div>
   );
 };

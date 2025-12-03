@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useCart } from "../../hooks/cartContext";
 
 export const NavbarCart = () => {
   /**
    * No logic for setting cart count yet. Need to use cart context.
    */
-  const [cartCount, setCartCount] = useState(1);
+  const { cartCount } = useCart()
 
   return (
     <div className="relative flex items-center space-x-2 pr-2">

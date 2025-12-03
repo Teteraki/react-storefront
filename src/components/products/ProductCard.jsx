@@ -1,9 +1,10 @@
 //hyper ui card modified
 import { getCategoryImage } from "../../data/categoryImages.js";
+import { useCart } from "../../hooks/cartContext.jsx";
 
 export const ProductCard = ({ product }) => {
   // types of images based on Tops, Bottoms, Sweaters, Outerwear, Dresses, Jumpsuits
-
+  const { addToCart } = useCart();
   return (
     <a href="#" className="group block">
       <img
@@ -32,6 +33,7 @@ export const ProductCard = ({ product }) => {
           {/* Quick Add to Cart */}
           <button
             type="button"
+            onClick={() => addToCart(product)}
             className="inline-flex gap-1 rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 transition"
           >
             <span className="text-base font-bold leading-none">+</span>
