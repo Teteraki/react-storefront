@@ -36,11 +36,9 @@ export const BrowseContainer = ({ products, loading, error, category, gender }) 
   }));
 };
 
-
     const [sortBy, setSortBy] = useState("Name, ASC");
 
-    
-
+  
     // Filter the products.
     const filteredProducts = products.filter(product => {
 
