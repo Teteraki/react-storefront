@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 // Create context
 const CartContext = createContext();
@@ -6,26 +6,29 @@ const CartContext = createContext();
 // Custom hook for easier usage
 export const useCart = () => useContext(CartContext);
 
-
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // Load initial cart from localStorage if available
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // Whenever cartItems changes, save to localStorage
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Add items to cart
   const addToCart = (product, quantity = 1) => {
     setCartItems(prev => {
-        
-      // Check if product already exists
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
-
-        // Update quantity
         return prev.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      // Add new product
       return [...prev, { ...product, quantity }];
     });
   };

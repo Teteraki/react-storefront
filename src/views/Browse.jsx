@@ -5,6 +5,8 @@ export const Browse = ({ products, loading, error }) => {
   const { gender, category } = useParams();
 
   return (
+
+    // I can add future components here if I wanted to change the page up a but.
     <BrowseContainer
       products={products}
       loading={loading}
