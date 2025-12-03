@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export const ProductCard = ({ product }) => {
   const [showToast, setShowToast] = useState(false);
   const { addToCart } = useCart();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleAddToCart = (product) => {
     addToCart(product);
