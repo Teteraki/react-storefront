@@ -4,11 +4,12 @@ import { FilterDropdown } from "./filter/FilterDropdown";
 import { SelectedFilterPill } from "./filter/SelectedFilterPill";
 import { SortDropdown } from "./sort/SortDropdown";
 
-export const BrowseContainer = ({ products, loading, error }) => {
+export const BrowseContainer = ({ products, loading, error, category, gender }) => {
 
     // Object for holding filter specific arrays (makes sense in my head to do this to implement additive filters).
     const [filters, setFilters] = useState({
-      category: [],
+      gender: gender ? [gender] : [],
+      category: category ? [category] : [],
       colors: [],
       size: [],
       
@@ -17,6 +18,7 @@ export const BrowseContainer = ({ products, loading, error }) => {
     // Clear all filters with reset button.
     const clearFilters = () => {
         setFilters({
+          gender: [],
       category: [],
       colors: [],
       size: [],
@@ -43,12 +45,17 @@ export const BrowseContainer = ({ products, loading, error }) => {
     const filteredProducts = products.filter(product => {
 
       // Truthful statement to return all products by default
-      const matchCategory = filters.category.length === 0 || filters.category.includes(product.category); 
+      const matchGender =
+      filters.gender.length === 0 ||
+      filters.gender.some(f => f.toLowerCase() === product.gender.toLowerCase());
+      const matchCategory =
+      filters.category.length === 0 ||
+      filters.category.some(c => c.toLowerCase() === product.category.toLowerCase()); 
       const matchColors = filters.colors.length === 0 || filters.colors.includes(product.color);
-      const matchSizes = filters.size.length === 0 || filters.size.includes(size)
+      const matchSizes = filters.size.length === 0 || filters.size.includes(size);
 
       // Additive filtering.
-      return matchCategory && matchColors && matchSizes;
+      return matchGender && matchCategory && matchColors && matchSizes;
     })
 
     // Sort the products after filter, if it is on the default label Sort By, immediately return and do not sort.
@@ -128,10 +135,11 @@ export const BrowseContainer = ({ products, loading, error }) => {
                       </button>
              <div className="mt-1 space-y-2">
 
-               
+                <FilterDropdown title="Gender" onToggle={(value) => toggleFilter("gender", value)} selected={filters.gender} filters={["Mens", "Womens"]} />
                 <FilterDropdown title="Category" onToggle={(value) => toggleFilter("category", value)} selected={filters.category} filters={[...new Set(products.map((p) => p.category))]} />
                 <FilterDropdown title="Sizes" onToggle={(value) => toggleFilter("size", value)} selected={filters.size} filters={["XS","S","M","L","XL"]} />
                 <FilterDropdown title="Colors" onToggle={(value) => toggleFilter("colors", value)} selected={filters.colors} filters={[... new Set(products.map((p) => p.color[0].name))]} />
+                
               </div>
             </div>
           </div>

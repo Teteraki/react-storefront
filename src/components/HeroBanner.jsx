@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const HeroBanner = ({videoURL, header, subtext, anchorText, href}) => {
   return (
     <section className="relative py-10 w-full overflow-hidden">
@@ -11,8 +13,7 @@ export const HeroBanner = ({videoURL, header, subtext, anchorText, href}) => {
         src={videoURL}
       />
 
-      {/* Optional dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/40"></div>
+  
 
       {/* Hero content (same as your original) */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -26,12 +27,12 @@ export const HeroBanner = ({videoURL, header, subtext, anchorText, href}) => {
           </p>
 
           <div className="mt-6 flex gap-3">
-            <a
-              href={href}
-              className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
-            >
-             {anchorText}
-            </a>
+            <Link
+  to={href} 
+  className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
+>
+  {anchorText}
+</Link>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
-
+import { Men } from "./views/Men"
 
 export const App = () => {
 
@@ -29,6 +29,39 @@ export const App = () => {
             <Browse products={products} error={error} loading={loading} />
           }
         />
+        <Route
+          path="/men"
+          element={
+            <Men products={products} error={error} loading={loading} />
+          }
+        />
+
+        <Route
+          path="/browse/:gender"
+          element={
+            <Browse products={products} error={error} loading={loading} />
+          }
+        />
+
+        <Route
+          path="/browse/:gender/:category"
+          element={
+            <Browse products={products} error={error} loading={loading} />
+          }
+        />
+
+        <Route
+          path="/browse/:category"
+          element={
+            <Browse products={products} error={error} loading={loading} />
+          }
+        />
+
+    
+
+      
+       
+        
       </Routes>
           
       <Footer />
