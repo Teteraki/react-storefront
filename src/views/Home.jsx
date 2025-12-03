@@ -17,7 +17,7 @@ export const Home = ({ products, loading, error }) => {
         itemsPerPage={4}
         containerTitle={"Featured Apparel"}
       />
-      <CategoryContainer id="test"
+      <CategoryContainer
         categories={[...new Set(products.map((p) => p.category))]}
       />
     </>
