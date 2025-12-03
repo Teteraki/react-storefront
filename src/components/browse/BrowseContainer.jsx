@@ -48,9 +48,7 @@ export const BrowseContainer = ({ products, loading, error, category, gender }) 
       const matchGender =
       filters.gender.length === 0 ||
       filters.gender.some(f => f.toLowerCase() === product.gender.toLowerCase());
-      const matchCategory =
-      filters.category.length === 0 ||
-      filters.category.some(c => c.toLowerCase() === product.category.toLowerCase()); 
+      const matchCategory = filters.category.length === 0 || filters.category.includes(product.category); 
       const matchColors = filters.colors.length === 0 || filters.colors.includes(product.color);
       const matchSizes = filters.size.length === 0 || filters.size.includes(size);
 

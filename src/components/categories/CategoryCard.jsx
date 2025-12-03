@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const CategoryCard = ({ gender, category }) => {
   // Determine the URL path
-  const path = gender ? `/browse/${gender}/${category}` : `/browse/${category}`;
+  const path = gender ? `/browse/${gender}/${category}` : `/browse/category/${category}`;
 
   return (
     <Link to={path} className="block">

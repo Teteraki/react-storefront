@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom"
 import { useProducts } from "./hooks/useProducts";
 
 
@@ -7,7 +7,7 @@ import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
-import { Men } from "./views/Men"
+import { Men } from "./views/Men";
 import { Women } from "./views/Women";
 
 
@@ -26,12 +26,7 @@ export const App = () => {
           path="/"
           element={<Home products={products} error={error} loading={loading} />}
         />
-        <Route
-          path="/browse"
-          element={
-            <Browse products={products} error={error} loading={loading} />
-          }
-        />
+        
         <Route
           path="/men"
           element={
@@ -61,7 +56,7 @@ export const App = () => {
         />
 
         <Route
-          path="/browse/:category"
+          path="/browse/category/:category"
           element={
             <Browse products={products} error={error} loading={loading} />
           }
