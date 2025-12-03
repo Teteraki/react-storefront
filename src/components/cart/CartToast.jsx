@@ -17,7 +17,7 @@ export const CartToast = ({ show, onClose }) => {
     }
   }, [show, onClose]);
 
-  if (!visible || cartItems.length === 0) return null;
+  if (!visible) return null;
 
   return (
     <div className="fixed top-4 right-4 z-50 w-screen max-w-sm">
@@ -60,7 +60,7 @@ export const CartToast = ({ show, onClose }) => {
                   <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                     <div>
                       <dt className="inline font-semibold">Size:</dt>
-                      <dd className="inline ml-1">{item.size || "N/A"}</dd>
+                      <dd className="inline ml-1">{item.sizes + ", " || "N/A"}</dd>
                     </div>
                     <div>
                       <dt className="inline font-semibold">Color:</dt>
