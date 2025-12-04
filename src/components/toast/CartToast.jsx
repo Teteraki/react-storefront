@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useCart } from "../../hooks/cartContext";
-import { CartToastActionButton } from "../links/CartToastActionButton";
+import { CartToastActionButton } from "./CartToastActionButton";
 import { CartToastItemList } from "./CartToastItemList";
 
 export const CartToast = ({ show, onClose }) => {

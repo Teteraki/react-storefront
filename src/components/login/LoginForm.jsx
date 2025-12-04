@@ -1,4 +1,4 @@
-import { LoginFormButton } from "../links/LoginFormButton";
+import { LoginFormButton } from "./LoginFormButton";
 
 export const LoginForm = () => {
   return (

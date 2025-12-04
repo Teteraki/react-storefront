@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckoutButton } from "../links/CheckoutButton";
+import { CheckoutButton } from "./CheckoutButton";
 
 const SHIPPING_RATES = {
   Canada: { standard: 10, express: 25, priority: 35 },
