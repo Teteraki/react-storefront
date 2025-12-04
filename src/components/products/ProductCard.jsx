@@ -27,6 +27,7 @@ export const ProductCard = ({ product }) => {
     <div className="group block relative">
       {/* Image link */}
       <Link to={`/product/${product.id}`}>
+        {console.log(`/product/${product.id}`)}
         <img
           src={getCategoryImage(product.category).image}
           className="rounded-md h-[350px] w-full object-cover"

@@ -45,7 +45,7 @@ export const Navbar = () => {
                 {loggedIn && (
                   <li key="dashboard">
                     <Link
-                      href="/dashboard"
+                      to="/dashboard"
                       className="text-sm text-gray-700 hover:text-gray-900"
                     >
                       Dashboard

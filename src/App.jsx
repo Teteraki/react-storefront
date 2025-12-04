@@ -12,6 +12,8 @@ import { CartProvider } from "./hooks/cartContext";
 import { CartContainer } from "./components/cart/CartContainer";
 import { AuthProvider } from "./hooks/AuthContext";
 import { LoginForm } from "./components/login/LoginForm";
+import { SingleProduct } from "./views/SingleProduct";
+import { Dashboard } from "./views/Dashboard";
 
 export const App = () => {
   const { products, loading, error } = useProducts();
@@ -72,6 +74,16 @@ export const App = () => {
             element={
               <Browse products={products} error={error} loading={loading} />
             }
+          />
+
+          <Route
+            path="/product/:id"
+            element={<SingleProduct products={products} />}
+          />
+
+          <Route
+            path="/dashboard"
+            element={<Dashboard products={products} />}
           />
         </Routes>
 
