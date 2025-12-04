@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProductCard } from "./ProductCard";
 import { PageBackButton } from "./PageBackButton";
 import { PageNextButton } from "./PageNextButton";
@@ -30,7 +30,6 @@ export const ProductContainer = ({
   itemsPerPage = 4, // default 4 per page unless a different value prop was passed.
   containerTitle,
 }) => {
-
   // Show throbber wheel when data is loading.
   if (loading) {
     return (
@@ -47,6 +46,11 @@ export const ProductContainer = ({
 
   // Page State for cycling the active page.
   const [page, setPage] = useState(0);
+
+  // Whenever the products array changes due to filters, go back to the first page.
+  useEffect(() => {
+    setPage(0);
+  }, [products]);
 
   // Calculate the total number of pages if a itemsPerPage prop was passed.
   const totalPages = Math.ceil(products.length / itemsPerPage);
@@ -68,17 +72,17 @@ export const ProductContainer = ({
   return (
     <section className="py-10 bg-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-       
         {/* Header text and page nav buttons */}
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">
-            {containerTitle || "Products"} 
+            {products.length === 0
+              ? "No Results Found"
+              : containerTitle || "Products"}
           </h2>
 
           <div className="flex gap-2">
             <PageBackButton handlePrev={() => handlePrev()} />
             <PageNextButton handleNext={() => handleNext()} />
-            
           </div>
         </div>
 

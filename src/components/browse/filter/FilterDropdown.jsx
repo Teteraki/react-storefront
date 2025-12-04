@@ -39,7 +39,9 @@ export const FilterDropdown = ({ title, filters, selected, onToggle }) => {
                   onChange={() => onToggle(filter)}
                   className="size-5 rounded-sm border-gray-300 shadow-sm bg-teal-600"
                 />
-                <span className="text-sm font-medium text-gray-700">{filter}</span>
+                <span className="text-sm font-medium text-gray-700">
+                  {filter}
+                </span>
               </label>
             </li>
           ))}

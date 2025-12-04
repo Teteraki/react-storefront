@@ -28,6 +28,10 @@ export const CartContainer = () => {
                     const price = item.price ?? 0;
                     const lineTotal = price * item.quantity;
 
+                    const colorHex = item.color.find(
+                      (c) => c.name === item.selectedColor
+                    ).hex;
+
                     return (
                       <li
                         key={`${item.id}-${item.size}-${item.selectedColor}`}
@@ -50,13 +54,20 @@ export const CartContainer = () => {
 
                           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                             <div>
-                              <dt className="inline">Size:</dt>
+                              <dt className="inline">Size: </dt>
                               <dd className="inline">{item.size}</dd>
                             </div>
 
                             <div>
-                              <dt className="inline">Color:</dt>
-                              <dd className="inline">{item.selectedColor}</dd>
+                              <dt className="inline">Color: </dt>
+                              <dd className="inline pr-2">
+                                {item.selectedColor}
+                              </dd>
+                              {/* color circle */}
+                              <span
+                                className="inline-block w-3 h-3 rounded-full border border-gray-300"
+                                style={{ backgroundColor: colorHex }}
+                              />
                             </div>
                           </dl>
 

@@ -1,98 +1,182 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ProductContainer } from "../products/ProductContainer";
 import { FilterDropdown } from "./filter/FilterDropdown";
 import { SelectedFilterPill } from "./filter/SelectedFilterPill";
 import { SortDropdown } from "./sort/SortDropdown";
 
-export const BrowseContainer = ({ products, loading, error, category, gender }) => {
+export const BrowseContainer = ({
+  products,
+  loading,
+  error,
+  category,
+  gender,
+}) => {
+  // ====== DERIVE SIZE FILTER OPTIONS FROM PRODUCTS ======
 
-    // Object for holding filter specific arrays (makes sense in my head to do this to implement additive filters).
-    const [filters, setFilters] = useState({
-      gender: gender ? [gender] : [],
-      category: category ? [category] : [],
-      colors: [],
-      size: [],
-      
+  const { clothingSizes, shoeSizes, waistSizes } = useMemo(() => {
+    // Get all sizes from all products
+    const allSizes = products.flatMap((p) => p.sizes ?? []);
+
+    // Split into numeric vs alpha
+    const numericSizes = allSizes.filter((s) => !Number.isNaN(Number(s)));
+    const alphaSizes = allSizes.filter((s) => Number.isNaN(Number(s)));
+
+    // Shoe vs waist: simple heuristic based on value
+    const shoeSizes = [
+      ...new Set(numericSizes.filter((s) => Number(s) < 20)),
+    ].sort((a, b) => Number(a) - Number(b));
+
+    const waistSizes = [
+      ...new Set(numericSizes.filter((s) => Number(s) >= 20)),
+    ].sort((a, b) => Number(a) - Number(b));
+
+    // Clothing sizes (XS–XL etc) with nice custom order
+    const CLOTHING_ORDER = [
+      "XS",
+      "S",
+      "S/M",
+      "M",
+      "L",
+      "L/XL",
+      "XL",
+      "One Size",
+    ];
+
+    const clothingSizes = [...new Set(alphaSizes)].sort((a, b) => {
+      const ia = CLOTHING_ORDER.indexOf(a);
+      const ib = CLOTHING_ORDER.indexOf(b);
+
+      if (ia === -1 && ib === -1) return a.localeCompare(b);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
     });
 
-    // Clear all filters with reset button.
-    const clearFilters = () => {
-        setFilters({
-          gender: [],
+    return { clothingSizes, shoeSizes, waistSizes };
+  }, [products]);
+
+  // ====== FILTER STATE ======
+
+  const [filters, setFilters] = useState({
+    gender: gender ? [gender] : [],
+    category: category ? [category] : [],
+    colors: [],
+    clothingSize: [],
+    shoeSize: [],
+    waistSize: [],
+  });
+
+  // Clear all filters with reset button.
+  const clearFilters = () => {
+    setFilters({
+      gender: [],
       category: [],
       colors: [],
-      size: [],
-      
-    })
-    }
-
-    // Toggle a specific filter.
-    const toggleFilter = (group, value) => {
-    setFilters(prev => ({
-    ...prev,
-    [group]: prev[group].includes(value)
-      ? prev[group].filter(v => v !== value) // remove
-      : [...prev[group], value]              // add
-  }));
-};
-
-    const [sortBy, setSortBy] = useState("Name, ASC");
-
-  
-    // Filter the products.
-    const filteredProducts = products.filter(product => {
-
-      // Truthful statement to return all products by default
-      const matchGender =
-      filters.gender.length === 0 ||
-      filters.gender.some(f => f.toLowerCase() === product.gender.toLowerCase());
-      const matchCategory = filters.category.length === 0 || filters.category.includes(product.category); 
-      const matchColors = filters.colors.length === 0 || filters.colors.includes(product.color);
-      const matchSizes = filters.size.length === 0 || filters.size.includes(size);
-
-      // Additive filtering.
-      return matchGender && matchCategory && matchColors && matchSizes;
-    })
-
-    // Sort the products after filter, if it is on the default label Sort By, immediately return and do not sort.
-    // Prog 3: Data Structures knowledge coming in handy here!
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
-      if (!sortBy) return 0;
-
-      const [field, direction] = sortBy.split(", ").map(v => v.trim());
-      const dir = direction === "ASC" ? 1 : -1;
-
-      switch (field) {
-        case "Name": {
-          const nameA = a.name || "";
-          const nameB = b.name || "";
-          return nameA.localeCompare(nameB) * dir;
-        }
-
-        case "Price": {
-          const priceA = a.price ?? 0;
-          const priceB = b.price ?? 0;
-          return (priceA - priceB) * dir;
-        }
-
-        case "Category": {
-          const catA = a.category || "";
-          const catB = b.category || "";
-          return catA.localeCompare(catB) * dir;
-        }
-
-        default:
-          return 0;
-      }
+      clothingSize: [],
+      shoeSize: [],
+      waistSize: [],
     });
+  };
 
+  // Toggle a specific filter group.
+  const toggleFilter = (group, value) => {
+    setFilters((prev) => ({
+      ...prev,
+      [group]: prev[group].includes(value)
+        ? prev[group].filter((v) => v !== value) // remove
+        : [...prev[group], value], // add
+    }));
+  };
 
+  // ====== SORT STATE ======
+
+  const [sortBy, setSortBy] = useState("Name, ASC");
+
+  // ====== FILTER PRODUCTS ======
+
+  const filteredProducts = products.filter((product) => {
+    const matchGender =
+      filters.gender.length === 0 ||
+      filters.gender.some(
+        (f) => f.toLowerCase() === product.gender.toLowerCase()
+      );
+
+    const matchCategory =
+      filters.category.length === 0 ||
+      filters.category.includes(product.category);
+
+    const productColorNames =
+      (product.color ?? []).map((c) => c.name.toLowerCase()) ?? [];
+
+    const matchColors =
+      filters.colors.length === 0 ||
+      filters.colors.some((f) => productColorNames.includes(f.toLowerCase()));
+
+    const productSizes = product.sizes ?? [];
+
+    const matchClothingSize =
+      filters.clothingSize.length === 0 ||
+      productSizes.some((s) => filters.clothingSize.includes(s));
+
+    const matchShoeSize =
+      filters.shoeSize.length === 0 ||
+      productSizes.some((s) => filters.shoeSize.includes(s));
+
+    const matchWaistSize =
+      filters.waistSize.length === 0 ||
+      productSizes.some((s) => filters.waistSize.includes(s));
+
+    return (
+      matchGender &&
+      matchCategory &&
+      matchColors &&
+      matchClothingSize &&
+      matchShoeSize &&
+      matchWaistSize
+    );
+  });
+
+  // ====== SORT FILTERED PRODUCTS ======
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (!sortBy) return 0;
+
+    const [field, direction] = sortBy.split(", ").map((v) => v.trim());
+    const dir = direction === "ASC" ? 1 : -1;
+
+    switch (field) {
+      case "Name": {
+        const nameA = a.name || "";
+        const nameB = b.name || "";
+        return nameA.localeCompare(nameB) * dir;
+      }
+
+      case "Price": {
+        const priceA = a.price ?? 0;
+        const priceB = b.price ?? 0;
+        return (priceA - priceB) * dir;
+      }
+
+      case "Category": {
+        const catA = a.category || "";
+        const catB = b.category || "";
+        return catA.localeCompare(catB) * dir;
+      }
+
+      default:
+        return 0;
+    }
+  });
+
+  // ====== RENDER ======
 
   return (
     <section>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header>
-          <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">Browse Apparel</h2>
+          <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+            Browse Apparel
+          </h2>
         </header>
 
         <div className="mt-8 block lg:hidden">
@@ -107,42 +191,82 @@ export const BrowseContainer = ({ products, loading, error, category, gender }) 
               stroke="currentColor"
               className="size-4 rtl:rotate-180"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
             </svg>
           </button>
         </div>
 
         <div className="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+          {/* FILTERS COLUMN */}
           <div className="hidden space-y-4 lg:block">
-            
-            
             <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
-          
 
-            <SelectedFilterPill filters={filters} toggleFilter={toggleFilter}  />
-
-        
-          
+            <SelectedFilterPill filters={filters} toggleFilter={toggleFilter} />
 
             <div>
               <p className="block text-xs font-medium text-gray-700">Filters</p>
-                      <button type="button" onClick={clearFilters} className="text-sm text-gray-900 underline underline-offset-4">
-                        Reset {console.log(filters)}
-                      </button>
-             <div className="mt-1 space-y-2">
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="text-sm text-gray-900 underline underline-offset-4"
+              >
+                Reset
+              </button>
 
-                <FilterDropdown title="Gender" onToggle={(value) => toggleFilter("gender", value)} selected={filters.gender} filters={["Mens", "Womens"]} />
-                <FilterDropdown title="Category" onToggle={(value) => toggleFilter("category", value)} selected={filters.category} filters={[...new Set(products.map((p) => p.category))]} />
-                <FilterDropdown title="Sizes" onToggle={(value) => toggleFilter("size", value)} selected={filters.size} filters={["XS","S","M","L","XL"]} />
-                <FilterDropdown title="Colors" onToggle={(value) => toggleFilter("colors", value)} selected={filters.colors} filters={[... new Set(products.map((p) => p.color[0].name))]} />
-                
+              <div className="mt-1 space-y-2">
+                <FilterDropdown
+                  title="Gender"
+                  onToggle={(value) => toggleFilter("gender", value)}
+                  selected={filters.gender}
+                  filters={["Mens", "Womens"]}
+                />
+
+                <FilterDropdown
+                  title="Category"
+                  onToggle={(value) => toggleFilter("category", value)}
+                  selected={filters.category}
+                  filters={[...new Set(products.map((p) => p.category))]}
+                />
+
+                <FilterDropdown
+                  title="Clothing Sizes"
+                  onToggle={(value) => toggleFilter("clothingSize", value)}
+                  selected={filters.clothingSize}
+                  filters={clothingSizes}
+                />
+
+                <FilterDropdown
+                  title="Shoe Sizes"
+                  onToggle={(value) => toggleFilter("shoeSize", value)}
+                  selected={filters.shoeSize}
+                  filters={shoeSizes}
+                />
+
+                <FilterDropdown
+                  title="Waist Sizes"
+                  onToggle={(value) => toggleFilter("waistSize", value)}
+                  selected={filters.waistSize}
+                  filters={waistSizes}
+                />
+
+                <FilterDropdown
+                  title="Colors"
+                  onToggle={(value) => toggleFilter("colors", value)}
+                  selected={filters.colors}
+                  filters={[
+                    ...new Set(products.map((p) => p.color?.[0]?.name)),
+                  ].sort()}
+                />
               </div>
             </div>
           </div>
 
           {/* PRODUCT GRID */}
-
-            <div className="lg:col-span-3">
+          <div className="lg:col-span-3">
             <ProductContainer
               products={sortedProducts}
               error={error}
@@ -151,7 +275,6 @@ export const BrowseContainer = ({ products, loading, error, category, gender }) 
               containerTitle={"Results"}
             />
           </div>
-          
         </div>
       </div>
     </section>
