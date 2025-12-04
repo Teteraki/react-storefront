@@ -1,6 +1,6 @@
 import { getCategoryImage } from "../../data/categoryImages.js";
 import { Link } from "react-router-dom";
-import { QuickAddToCart } from "../cart/QuickAddToCart.jsx";
+import { QuickAddToCart } from "./QuickAddToCart.jsx";
 
 /**
  * ProductCard Component
@@ -23,7 +23,6 @@ import { QuickAddToCart } from "../cart/QuickAddToCart.jsx";
  * @returns {JSX.Element} A styled product card with image, details, and cart interaction.
  */
 export const ProductCard = ({ product }) => {
-
   return (
     <div className="group block relative">
       {/* Image link */}
@@ -49,7 +48,6 @@ export const ProductCard = ({ product }) => {
           </p>
         </div>
 
-
         <div className="flex flex-col items-start gap-2 mt-2">
           {/* Price */}
           <p className="text-gray-900 font-semibold px-2">
@@ -57,7 +55,7 @@ export const ProductCard = ({ product }) => {
           </p>
 
           {/* Quickly add 1 item to the cart */}
-          <QuickAddToCart product={product}/>
+          <QuickAddToCart product={product} />
         </div>
       </div>
     </div>

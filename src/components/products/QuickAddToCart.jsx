@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCart } from "../../hooks/cartContext";
-import { CartToast } from "./CartToast";
+import { CartToast } from "../toast/CartToast";
 
 export const QuickAddToCart = ({ product }) => {
   const [showToast, setShowToast] = useState(false);
