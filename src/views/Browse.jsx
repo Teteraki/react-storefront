@@ -6,7 +6,7 @@ export const Browse = ({ products, loading, error }) => {
 
   return (
 
-    // I can add future components here if I wanted to change the page up a but.
+    // I can add future components here if I wanted to change the page up a bit.
     <BrowseContainer
       products={products}
       loading={loading}

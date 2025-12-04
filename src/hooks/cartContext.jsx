@@ -18,31 +18,83 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Add items to cart
-  const addToCart = (product, quantity = 1) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
+  const addToCart = (product, size, color, quantity = 1) => {
+    setCartItems((prev) => {
+      // Find exact matching variant
+      const existing = prev.find(
+        (item) =>
+          item.id === product.id &&
+          item.size === size &&
+          item.selectedColor === color
+      );
+
+      // If it exists, increment quantity
       if (existing) {
-        return prev.map(item =>
-          item.id === product.id
+        return prev.map((item) =>
+          item.id === product.id &&
+          item.size === size &&
+          item.selectedColor === color
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prev, { ...product, quantity }];
+
+      // Otherwise add as new variant
+      return [
+        ...prev,
+        {
+          ...product,
+          size,
+          selectedColor: color,
+          quantity,
+        },
+      ];
     });
   };
 
-  // Remove item from cart
-  const removeFromCart = (productId) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId));
+  const removeFromCart = (productId, size, color) => {
+    setCartItems((prev) =>
+      prev.filter(
+        (item) =>
+          !(
+            item.id === productId &&
+            item.size === size &&
+            item.selectedColor === color
+          )
+      )
+    );
+  };
+
+  const updateQuantity = (productId, size, color, quantity) => {
+    const qty = Number(quantity);
+
+    // Ignore NaN or negative values
+    if (!Number.isFinite(qty) || qty < 0) return;
+
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId &&
+        item.size === size &&
+        item.selectedColor === color
+          ? { ...item, quantity: qty }
+          : item
+      )
+    );
   };
 
   // Get total count
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, cartCount }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        cartCount,
+        updateQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
