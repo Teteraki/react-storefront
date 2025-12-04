@@ -30,6 +30,14 @@ export const ProductContainer = ({
   itemsPerPage = 4, // default 4 per page unless a different value prop was passed.
   containerTitle,
 }) => {
+  // Page State for cycling the active page.
+  const [page, setPage] = useState(0);
+
+  // Whenever the products array changes due to filters, go back to the first page.
+  useEffect(() => {
+    setPage(0);
+  }, [products]);
+
   // Show throbber wheel when data is loading.
   if (loading) {
     return (
@@ -43,14 +51,6 @@ export const ProductContainer = ({
   if (error) {
     return <p className="text-red-600 text-center">Error: {error.message}</p>;
   }
-
-  // Page State for cycling the active page.
-  const [page, setPage] = useState(0);
-
-  // Whenever the products array changes due to filters, go back to the first page.
-  useEffect(() => {
-    setPage(0);
-  }, [products]);
 
   // Calculate the total number of pages if a itemsPerPage prop was passed.
   const totalPages = Math.ceil(products.length / itemsPerPage);

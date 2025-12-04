@@ -5,8 +5,12 @@ import { ProductContainer } from "../components/products/ProductContainer";
 export const Home = ({ products, loading, error }) => {
   return (
     <>
-      <HeroBanner header="Shop the latest fits." subtext="Curated streetwear and essentials for every day life."
-        anchorText="Browse Apparel" href="/browse" videoURL={"https://cdn.pixabay.com/video/2024/04/29/209895_large.mp4"}
+      <HeroBanner
+        header="Shop the latest fits."
+        subtext="Curated streetwear and essentials for every day life."
+        anchorText="Browse Apparel"
+        href="/browse"
+        videoURL={"https://cdn.pixabay.com/video/2024/04/29/209895_large.mp4"}
       />
 
       <ProductContainer
