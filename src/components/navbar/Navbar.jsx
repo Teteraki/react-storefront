@@ -19,12 +19,12 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo / Brand */}
-          <a className="block text-teal-600" href="/">
+          <Link className="block text-teal-600" to="/">
             <div className="flex justify-center text-teal-600">
               <span className="text-2xl font-bold">Storefront&nbsp;</span>
               <p>by Dylan Sanders</p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:block">

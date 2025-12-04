@@ -1,15 +1,12 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/cartContext";
 
 export const NavbarCart = () => {
-  /**
-   * No logic for setting cart count yet. Need to use cart context.
-   */
-  const { cartCount } = useCart()
+  const { cartCount } = useCart();
 
   return (
     <div className="relative flex items-center space-x-2 pr-2">
-      <a href="/cart" className="relative">
+      <Link to="/cart" className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -36,7 +33,7 @@ export const NavbarCart = () => {
             {cartCount}
           </span>
         )}
-      </a>
+      </Link>
     </div>
   );
 };
