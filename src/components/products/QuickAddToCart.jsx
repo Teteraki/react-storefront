@@ -11,7 +11,7 @@ export const QuickAddToCart = ({ product }) => {
   const { addToCart } = useCart();
 
   const handleQuickAddClick = () => {
-    setShowPicker((prev) => !prev);
+    setShowPicker((prev) => !prev); // allows for on another click to set the state for me.
   };
 
   const handleConfirmAdd = () => {

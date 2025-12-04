@@ -10,14 +10,14 @@ import { Men } from "./views/Men";
 import { Women } from "./views/Women";
 import { CartProvider } from "./hooks/cartContext";
 import { CartContainer } from "./components/cart/CartContainer";
+import { AuthProvider } from "./hooks/AuthContext";
+import { LoginForm } from "./components/login/LoginForm";
 
 export const App = () => {
   const { products, loading, error } = useProducts();
 
-  // if (error) return <div>{error.message}</div>;
-
   return (
-    <div>
+    <AuthProvider>
       <CartProvider>
         <Navbar />
 
@@ -28,6 +28,8 @@ export const App = () => {
               <Home products={products} error={error} loading={loading} />
             }
           />
+
+          <Route path="/login" element={<LoginForm />} />
 
           <Route path="/cart" element={<CartContainer />} />
 
@@ -75,6 +77,6 @@ export const App = () => {
 
         <Footer />
       </CartProvider>
-    </div>
+    </AuthProvider>
   );
 };

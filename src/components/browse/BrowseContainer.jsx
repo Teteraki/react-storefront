@@ -85,11 +85,7 @@ export const BrowseContainer = ({
     }));
   };
 
-  // ====== SORT STATE ======
-
   const [sortBy, setSortBy] = useState("Name, ASC");
-
-  // ====== FILTER PRODUCTS ======
 
   const filteredProducts = products.filter((product) => {
     const matchGender =
