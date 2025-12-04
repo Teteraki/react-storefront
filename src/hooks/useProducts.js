@@ -11,10 +11,7 @@ export const useProducts = () => {
   useEffect(() => {
     const asyncFetch = async () => {
       try {
-      
         const res = await fetch(URL);
-
-        
 
         if (!res.ok) {
           console.error("Failed to fetch products:", res.statusText);
@@ -23,9 +20,8 @@ export const useProducts = () => {
 
         const data = await res.json();
         setProducts(data);
-      
       } catch (err) {
-        setError(err) ;
+        setError(err);
       } finally {
         setLoading(false);
       }

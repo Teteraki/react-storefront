@@ -1,8 +1,9 @@
+import { getCategoryImage } from "../../data/categoryImages";
 export const CartToastItem = ({ cartItem }) => {
   return (
     <li key={cartItem.id} className="flex items-start gap-4">
       <img
-        src={cartItem.image}
+        src={getCategoryImage(cartItem.category).image}
         alt={cartItem.name}
         className="w-16 h-16 rounded-sm object-cover shrink-0"
       />

@@ -1,3 +1,5 @@
+import { getCategoryImage } from "../../data/categoryImages";
+
 export const CartItem = ({ item, removeFromCart, updateQuantity }) => {
   const price = item.price ?? 0;
   const lineTotal = price * item.quantity;
@@ -7,11 +9,7 @@ export const CartItem = ({ item, removeFromCart, updateQuantity }) => {
   return (
     <li className="flex items-center gap-4">
       <img
-        src={
-          item.image ||
-          item.imageUrl ||
-          "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1160"
-        }
+        src={getCategoryImage(item.category).image}
         alt={item.title || item.name || "Cart item"}
         className="size-16 rounded-sm object-cover"
       />
