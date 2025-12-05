@@ -27,7 +27,6 @@ export const ProductCard = ({ product }) => {
     <div className="group block relative">
       {/* Image link */}
       <Link to={`/product/${product.id}`}>
-        {console.log(`/product/${product.id}`)}
         <img
           src={getCategoryImage(product.category).image}
           className="rounded-md h-[350px] w-full object-cover"
@@ -37,7 +36,7 @@ export const ProductCard = ({ product }) => {
       <div className="mt-3 flex justify-between text-sm">
         <div>
           {/* Header link */}
-          <Link to={`/product`}>
+          <Link to={`/product/${product.id}`}>
             <h3 className="text-gray-900 group-hover:underline group-hover:underline-offset-4">
               {product.name}
             </h3>
