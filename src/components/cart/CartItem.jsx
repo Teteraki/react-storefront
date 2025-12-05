@@ -4,7 +4,7 @@ export const CartItem = ({ item, removeFromCart, updateQuantity }) => {
   const price = item.price ?? 0;
   const lineTotal = price * item.quantity;
 
-  const colorHex = item.color.find((c) => c.name === item.selectedColor).hex;
+  const colorHex = item.color.find((c) => c.name === item.selectedColor)?.hex;
 
   return (
     <li className="flex items-center gap-4">
