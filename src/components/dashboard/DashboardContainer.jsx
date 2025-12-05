@@ -1,6 +1,12 @@
-import { useAuth } from "../../hooks/AuthContext";
+import { SalesByGenderPieChart } from "./PieChart";
 
-export const DashBoardContainer = () => {
+export const DashBoardContainer = ({ products }) => {
+  const salesData = [
+    { gender: "Men", sales: 120 },
+    { gender: "Women", sales: 180 },
+    { gender: "Unisex", sales: 90 },
+  ];
+
   return (
     <section>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -10,6 +16,7 @@ export const DashBoardContainer = () => {
               Sales Dashboard
             </h1>
           </header>
+          <SalesByGenderPieChart data={salesData} />
         </div>
       </div>
     </section>
