@@ -1,3 +1,5 @@
+import { useAuth } from "../../hooks/AuthContext";
+
 export const DashBoardContainer = () => {
   return (
     <section>
