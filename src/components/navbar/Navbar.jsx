@@ -1,8 +1,8 @@
-import { NavbarCart } from "./NavbarCart";
 import { useAuth } from "../../hooks/AuthContext";
 import { LoginOutButton } from "./LoginOutButton";
 import { NavbarLink } from "./NavbarLink";
 import { LogoLink } from "./LogoLink";
+import { NavbarCart } from "./NavBarCart";
 
 // React Router Public Links
 const navbarLinks = [
