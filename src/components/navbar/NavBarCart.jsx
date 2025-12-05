@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/cartContext";
 
+/**
+ * NavbarCart Component
+ * ---------------------
+ * Displays a shopping cart icon inside the navbar with a badge showing
+ * the number of items currently in the user's cart.
+ */
+
 export const NavbarCart = () => {
+  // Cart context provider "hook".
   const { cartCount } = useCart();
 
   return (
@@ -27,7 +35,7 @@ export const NavbarCart = () => {
           />
         </svg>
 
-        {/* Badge attached to cart icon for numbr of items */}
+        {/* Badge attached to cart icon for number of items */}
         {cartCount > 0 && (
           <span className="absolute -top-2 -right-4 bg-teal-600 text-white text-xs font-semibold px-1.75 py-0.5 rounded-full">
             {cartCount}

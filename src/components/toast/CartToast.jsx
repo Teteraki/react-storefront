@@ -4,6 +4,19 @@ import { CartToastActionButton } from "./CartToastActionButton";
 import { CartToastItemList } from "./CartToastItemList";
 import { CloseButton } from "./CloseButton";
 
+/**
+ * CartToast Component
+ *
+ * Displays a temporary toast notification summarizing the user's recent cart
+ * activity. Appears in the top-right corner of the screen and automatically
+ * dismisses after a short delay.
+ *
+ * @param {Object} props
+ * @param {boolean} props.show - Controls whether the toast is visible.
+ * @param {Function} props.onClose - Callback invoked to hide the toast manually
+ *   or after the auto-dismiss timer fires.
+ */
+
 export const CartToast = ({ show, onClose }) => {
   const { cartItems, cartCount } = useCart();
 

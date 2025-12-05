@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "../navbar/Breadcrumbs";
+import { Breadcrumbs } from "../breadcrumb/Breadcrumbs";
 import { SingleProductImages } from "./SingleProductImages";
 import { SingleProductSelections } from "./SingleProductSelections";
 

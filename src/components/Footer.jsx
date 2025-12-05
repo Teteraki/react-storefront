@@ -6,7 +6,6 @@
  * - A short description of the tech stack used
  * - A list of external links such as GitHub and a personal site. (will break these into smaller components)
  *
- * @returns {JSX.Element} A styled footer section for the application.
  */
 
 export const Footer = () => {

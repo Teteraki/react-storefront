@@ -1,4 +1,21 @@
 import { getCategoryImage } from "../../data/categoryImages";
+
+/**
+ * CartToastItem Component
+ *
+ * Renders a single cart item inside the `CartToast` popup. Displays a small
+ * product image, name, selected options, and quantity in a compact layout.
+ *
+ * @param {Object} props
+ * @param {Object} props.cartItem - The cart item to display.
+ * @param {string} props.cartItem.id - Unique identifier for the cart item.
+ * @param {string} props.cartItem.name - Product name.
+ * @param {string} props.cartItem.category - Category used to fetch the display image.
+ * @param {string} [props.cartItem.size] - Selected size
+ * @param {Array} props.cartItem.color - Array of selected color objects (e.g., `{ name: "Red" }`).
+ * @param {number} props.cartItem.quantity - Number of units added to the cart.
+ */
+
 export const CartToastItem = ({ cartItem }) => {
   return (
     <li key={cartItem.id} className="flex items-start gap-4">

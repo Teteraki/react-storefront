@@ -19,8 +19,6 @@ import { QuickAddToCart } from "./QuickAddToCart.jsx";
  * @param {string} props.product.description - Short description of the product.
  * @param {string} props.product.category - Category used to fetch the category image.
  * @param {number} props.product.price - Price of the product before formatting.
- *
- * @returns {JSX.Element} A styled product card with image, details, and cart interaction.
  */
 export const ProductCard = ({ product }) => {
   return (

@@ -1,3 +1,13 @@
+/**
+ * PageNextButton Component
+ *
+ * A simple circular next-navigation button used for stepping to the next
+ * view or page within a multi-step flow (e.g., product selection).
+ *
+ * @param {Object} props
+ * @param {Function} props.handleNext - Callback fired when the button is clicked.
+ */
+
 export const PageNextButton = ({ handleNext }) => {
   return (
     <button

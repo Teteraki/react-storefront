@@ -1,4 +1,13 @@
-// takes in a closing function for the onclick event.
+/**
+ * CloseButton Component
+ *
+ * A reusable close button used in modal dialogs, toast notifications,
+ * and other dismissible UI elements. Displays a small "X" icon and
+ * triggers a provided callback when clicked.
+ *
+ * @param {Object} props
+ * @param {Function} props.onClose - Callback fired when the button is clicked.
+ */
 export const CloseButton = ({ onClose }) => {
   return (
     <button

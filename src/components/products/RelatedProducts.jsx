@@ -1,5 +1,18 @@
 import { ProductContainer } from "./ProductContainer";
 
+/**
+ * RelatedProducts Component
+ *
+ * Displays a list of products that are similar to the currently viewed product.
+ * Similarity is determined by a combination of gender, category, and price range.
+ * If no closely related products are found, a default set of products is shown.
+ *
+ * @param {Object} props
+ * @param {Object} props.product - The current product being viewed.
+ * @param {Array<Object>} props.products - The full list of available products.
+ * @param {boolean} props.loading - Whether the product list is still loading.
+ * @param {Object|null} props.error - Error object if product fetching failed.
+ */
 export const RelatedProducts = ({ product, products, loading, error }) => {
   const PRICE_RANGE = 100;
 

@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
  * @param {string} props.anchorText - The text used for the CTA link button.
  * @param {string} props.href - The URL the CTA button links to.
  *
- * @returns {JSX.Element} A hero banner with a background video, overlay text and a button.
  */
 export const HeroBanner = ({ videoURL, header, subtext, anchorText, href }) => {
   return (

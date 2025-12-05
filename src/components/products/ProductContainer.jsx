@@ -20,7 +20,6 @@ import { PageNextButton } from "./PageNextButton";
  * @param {number} props.itemsPerPage - Number of products visible per page.
  * @param {string} [props.containerTitle="Products"] - Optional section title displayed above the grid.
  *
- * @returns {JSX.Element} A paginated product display grid with navigation controls.
  */
 
 export const ProductContainer = ({

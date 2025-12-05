@@ -1,8 +1,10 @@
-import { NavbarCart } from "./NavBarCart";
-import { useAuth } from "../../hooks/AuthContext"; // adjust path as needed
-import { Link } from "react-router-dom";
+import { NavbarCart } from "./NavbarCart";
+import { useAuth } from "../../hooks/AuthContext";
 import { LoginOutButton } from "./LoginOutButton";
+import { NavbarLink } from "./NavbarLink";
+import { LogoLink } from "./LogoLink";
 
+// React Router Public Links
 const navbarLinks = [
   { label: "Home", href: "/" },
   { label: "Men", href: "/men" },
@@ -10,6 +12,23 @@ const navbarLinks = [
   { label: "Browse", href: "/browse" },
 ];
 
+// Protected Links
+const adminLinks = [{ label: "Dashboard", href: "/dashboard" }];
+
+/**
+ * Navbar Component
+ *
+ * Renders the main site navigation bar, including:
+ * - Brand logo link (home route).
+ * - Primary navigation links (Home, Men, Women, Browse).
+ * - About button (triggers an external modal handler).
+ * - Admin dashboard link when the user is logged in.
+ * - Cart icon and login/logout button on the right side.
+ *
+ * @param {Object} props
+ * @param {Function} props.showAbout - Callback function when the "About" button
+ *   is clicked; used to open the About modal dialog.
+ */
 export const Navbar = ({ showAbout }) => {
   const { loggedIn } = useAuth();
 
@@ -17,29 +36,17 @@ export const Navbar = ({ showAbout }) => {
     <header className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo / Brand */}
-          <Link className="block text-teal-600" to="/">
-            <div className="flex justify-center text-teal-600">
-              <span className="text-2xl font-bold">Storefront&nbsp;</span>
-              <p>by Dylan Sanders</p>
-            </div>
-          </Link>
+          <LogoLink />
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav, mobile to be finished at later date.*/}
           <div className="hidden md:block">
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 {navbarLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      className="text-gray-500 transition hover:text-gray-500/75"
-                      to={link.href}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
+                  <NavbarLink key={link.label} link={link} />
                 ))}
 
+                {/* About rendered as a button to trigger the modal dialog. */}
                 <button
                   type="button"
                   onClick={showAbout}
@@ -48,22 +55,15 @@ export const Navbar = ({ showAbout }) => {
                   About
                 </button>
 
-                {/* Show when logged in */}
+                {/* Show when logged in. */}
                 {loggedIn && (
-                  <li key="dashboard">
-                    <Link
-                      to="/dashboard"
-                      className="text-sm text-gray-700 hover:text-gray-900"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
+                  <NavbarLink key="Dashboard" link={adminLinks[0]} />
                 )}
               </ul>
             </nav>
           </div>
 
-          {/* Right side: cart + auth button */}
+          {/* Right side: cart + auth button. */}
           <div className="flex items-center gap-4">
             <NavbarCart />
             <LoginOutButton />
