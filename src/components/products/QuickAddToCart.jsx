@@ -82,7 +82,7 @@ export const QuickAddToCart = ({ product }) => {
               ))}
             </div>
 
-            {/* Color Picker */}
+            {/* Color picker */}
             <p className="text-xs font-medium text-gray-500 mb-1">
               Select color
             </p>
