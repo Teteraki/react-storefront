@@ -1,4 +1,4 @@
-import { NavbarCart } from "./NavbarCart";
+import { NavbarCart } from "./NavBarCart";
 import { useAuth } from "../../hooks/AuthContext"; // adjust path as needed
 import { Link } from "react-router-dom";
 import { LoginOutButton } from "./LoginOutButton";
