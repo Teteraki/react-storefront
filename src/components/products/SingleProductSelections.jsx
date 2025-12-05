@@ -84,7 +84,7 @@ export const SingleProductSelections = ({ product }) => {
               : "bg-gray-200 text-gray-400 cursor-not-allowed")
           }
         >
-          Add to cart
+          Add to cart (BREaK THESE UINTO COMPONENTS!!)
         </button>
       </div>
       <CartToast show={showToast} onClose={() => setShowToast(false)} />
