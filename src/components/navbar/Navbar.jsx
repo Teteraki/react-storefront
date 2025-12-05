@@ -8,10 +8,9 @@ const navbarLinks = [
   { label: "Men", href: "/men" },
   { label: "Women", href: "/women" },
   { label: "Browse", href: "/browse" },
-  { label: "About", href: "/about" },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ showAbout }) => {
   const { loggedIn } = useAuth();
 
   return (
@@ -40,6 +39,14 @@ export const Navbar = () => {
                     </Link>
                   </li>
                 ))}
+
+                <button
+                  type="button"
+                  onClick={showAbout}
+                  className="text-gray-500 transition hover:text-gray-500/75"
+                >
+                  About
+                </button>
 
                 {/* Show when logged in */}
                 {loggedIn && (

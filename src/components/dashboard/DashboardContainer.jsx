@@ -1,10 +1,11 @@
-import { SalesByGenderPieChart } from "./PieChart";
+import { BarChartComponent } from "./BarChartComponent";
+import { PieChartComponent } from "./PieChartComponent";
 
 export const DashBoardContainer = ({ products }) => {
   const salesData = [
-    { gender: "Men", sales: 120 },
-    { gender: "Women", sales: 180 },
-    { gender: "Unisex", sales: 90 },
+    { name: "Men", value: 120 },
+    { name: "Women", value: 180 },
+    { name: "Unisex", value: 90 },
   ];
 
   return (
@@ -16,8 +17,13 @@ export const DashBoardContainer = ({ products }) => {
               Sales Dashboard
             </h1>
           </header>
-          <SalesByGenderPieChart data={salesData} />
         </div>
+
+        <div>
+          <PieChartComponent data={salesData} />
+        </div>
+
+        <BarChartComponent />
       </div>
     </section>
   );

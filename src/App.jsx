@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
 
@@ -14,14 +15,16 @@ import { AuthProvider } from "./hooks/AuthContext";
 import { LoginForm } from "./components/login/LoginForm";
 import { SingleProduct } from "./views/SingleProduct";
 import { Dashboard } from "./views/Dashboard";
+import { About } from "./components/About";
 
 export const App = () => {
   const { products, loading, error } = useProducts();
+  const [showAbout, setShowAbout] = useState(false);
 
   return (
     <AuthProvider>
       <CartProvider>
-        <Navbar />
+        <Navbar showAbout={() => setShowAbout(true)} />
 
         <Routes>
           <Route
@@ -88,6 +91,8 @@ export const App = () => {
         </Routes>
 
         <Footer />
+
+        <About show={showAbout} onClose={() => setShowAbout(false)} />
       </CartProvider>
     </AuthProvider>
   );
