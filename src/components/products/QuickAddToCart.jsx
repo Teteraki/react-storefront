@@ -24,7 +24,7 @@ export const QuickAddToCart = ({ product }) => {
     setShowToast(true);
   };
 
-  const canAdd = Boolean(selectedSize && selectedColor);
+  const canAdd = selectedSize && selectedColor;
 
   return (
     <>

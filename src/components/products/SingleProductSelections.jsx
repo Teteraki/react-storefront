@@ -1,12 +1,19 @@
 import { useCart } from "../../hooks/cartContext";
 import { useState } from "react";
 import { CartToast } from "../toast/CartToast";
+
 export const SingleProductSelections = ({ product }) => {
-  // addToCart = (product, size, color, quantity = 1)
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState(null);
   const [color, setColor] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const canAdd = product && size && color && quantity > 0;
+
+  const handleConfirmAdd = () => {
+    addToCart(product, size, color, quantity);
+    setShowToast(true);
+  };
 
   return (
     <section>
@@ -66,11 +73,21 @@ export const SingleProductSelections = ({ product }) => {
           ))}
         </div>
 
-        <button onClick={() => addToCart(product, size, color, quantity)}>
-          Add to Cart
-          <CartToast />
+        <button
+          type="button"
+          onClick={handleConfirmAdd}
+          disabled={!canAdd}
+          className={
+            "mt-1 w-full rounded-md px-2 py-1 text-xs font-medium " +
+            (canAdd
+              ? "bg-teal-600 text-white hover:bg-teal-700"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed")
+          }
+        >
+          Add to cart
         </button>
       </div>
+      <CartToast show={showToast} onClose={() => setShowToast(false)} />
     </section>
   );
 };
