@@ -10,25 +10,25 @@ export const Breadcrumbs = ({ product }) => {
   const category = product.category;
 
   return (
-    <nav aria-label="Breadcrumb">
-      <ol class="flex items-center gap-1 text-sm text-gray-700">
+    <nav aria-label="Breadcrumb ">
+      <ol className="flex items-center gap-1 py-4 text-sm text-gray-700">
         <li>
-          <Link to="/" class="block transition-colors hover:text-gray-900">
+          <Link to="/" className="block transition-colors hover:text-gray-900">
             Home
           </Link>
         </li>
 
-        <li class="rtl:rotate-180">
+        <li className="rtl:rotate-180">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="size-4"
+            className="size-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </li>
@@ -36,23 +36,23 @@ export const Breadcrumbs = ({ product }) => {
         <li>
           <Link
             to={`/browse/${gender}`}
-            class="block transition-colors hover:text-gray-900"
+            className="block transition-colors hover:text-gray-900"
           >
             {gender}
           </Link>
         </li>
 
-        <li class="rtl:rotate-180">
+        <li className="rtl:rotate-180">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="size-4"
+            className="size-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </li>
@@ -60,23 +60,23 @@ export const Breadcrumbs = ({ product }) => {
         <li>
           <Link
             to={`/browse/${gender}/${category}`}
-            class="block transition-colors hover:text-gray-900"
+            className="block transition-colors hover:text-gray-900"
           >
             {category}
           </Link>
         </li>
 
-        <li class="rtl:rotate-180">
+        <li className="rtl:rotate-180">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="size-4"
+            className="size-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </li>
@@ -84,7 +84,7 @@ export const Breadcrumbs = ({ product }) => {
         <li>
           <Link
             to={`/product/${product.id}`}
-            class="block transition-colors hover:text-gray-900"
+            className="block transition-colors hover:text-gray-900"
           >
             {product.name}
           </Link>

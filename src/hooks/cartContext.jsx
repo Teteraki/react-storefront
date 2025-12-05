@@ -18,7 +18,9 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product, size, color, quantity = 1) => {
+  const addToCart = (product, size, color, quantity) => {
+    !quantity ? (quantity = 1) : quantity;
+
     setCartItems((prev) => {
       // Find exact matching variant
       const existing = prev.find(
