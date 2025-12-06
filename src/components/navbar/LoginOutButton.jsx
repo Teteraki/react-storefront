@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 /**
  * LoginOutButton Component
- * -------------------------
+ *
  * Renders either a "Login" link or a "Logout" button depending on the user's
  * authentication state. This component interfaces with the global AuthContext
  * to determine whether the user is logged in and to perform logout actions.

@@ -1,5 +1,32 @@
 import { getCategoryImage } from "../../data/categoryImages";
 
+/**
+ * CartItem Component
+ * 
+ * Renders an individual item within the shopping cart, including its image,
+ * selected options (size and color), unit price, quantity controls, and
+ * per-item subtotal. Provides interactions for updating quantity and removing
+ * the item from the cart.
+ *
+
+ * @param {Object} props
+ * @param {Object} props.item - The cart item being displayed.
+ * @param {string} props.item.id - Unique identifier for the product variant.
+ * @param {string} props.item.name - Display name of the product.
+ * @param {string} props.item.category - Used to fetch fallback category images.
+ * @param {number} props.item.price - Unit price of the item.
+ * @param {number} props.item.quantity - Current quantity in the cart.
+ * @param {string} props.item.size - The selected size.
+ * @param {string} props.item.selectedColor - The selected color name.
+ * @param {Array<Object>} props.item.color - Array of color objects, each containing { name, hex }.
+ *
+ * @param {Function} props.removeFromCart - Callback to remove the item from the cart.
+ *   e.g., (id, size, selectedColor) => void
+ *
+ * @param {Function} props.updateQuantity - Callback to update item quantity.
+ *   e.g., (id, size, selectedColor, quantity) => void
+ */
+
 export const CartItem = ({ item, removeFromCart, updateQuantity }) => {
   const price = item.price ?? 0;
   const lineTotal = price * item.quantity;

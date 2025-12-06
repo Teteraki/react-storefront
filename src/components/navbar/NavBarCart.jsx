@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 
 /**
  * NavbarCart Component
- * ---------------------
+ *
  * Displays a shopping cart icon inside the navbar with a badge showing
  * the number of items currently in the user's cart.
  */

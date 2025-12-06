@@ -1,3 +1,10 @@
+/**
+ * Global Style Sheet
+ * 
+ * Imports TailwindCSS and defines global CSS rules applied across the
+ * entire application.
+ */
+
 @import "tailwindcss";
 
 html {

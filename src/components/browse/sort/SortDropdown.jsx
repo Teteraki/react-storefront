@@ -1,9 +1,22 @@
+/**
+ * SortDropdown Component
+ *
+ * Provides a set of sorting options for the product browse page. Allows users
+ * to sort the product list by name, price, or category in ascending or
+ * descending order.
+ *
+ * @param {Object} props
+ * @param {string} props.sortBy - The current sorting value (e.g., "Name, ASC").
+ * @param {Function} props.setSortBy - Callback used to update the sorting state.
+ */
 
-
-export const SortDropdown = ({ sortBy, setSortBy}) => {
+export const SortDropdown = ({ sortBy, setSortBy }) => {
   return (
     <div>
-      <label htmlFor="SortBy" className="block text-xs font-medium text-gray-700">
+      <label
+        htmlFor="SortBy"
+        className="block text-xs font-medium text-gray-700"
+      >
         Sort By
       </label>
 

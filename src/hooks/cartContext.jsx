@@ -1,6 +1,25 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-// Create context
+/**
+ * Cart Context (CartContext, CartProvider, useCart)
+ *
+ * Provides a global shopping cart system with full functionality:
+ * - Add items
+ * - Remove items
+ * - Update quantities
+ * - Persist cart state to localStorage
+ * - Compute total item count
+ *
+ * This context powers all cart-related UI across the application.
+ *
+ * - CartProvider: Wraps the app and exposes cart state and actions.
+ * - useCart(): Custom hook to consume cart context values.
+ *
+ * - Cart items are saved to localStorage under the "cart" key.
+ * - On first load, the provider checks localStorage and restores cart items.
+ * - Any update triggers a sync to localStorage (inside a useEffect).
+ */
+
 const CartContext = createContext();
 
 // Custom hook for easier usage

@@ -1,5 +1,21 @@
-// src/components/browse/filter/FilterContainer.jsx
 import { FilterDropdown } from "./FilterDropdown";
+
+/**
+ * FilterContainer Component
+ *
+ * Renders a collection of filter dropdowns used on the product browse page.
+ * Provides controls for gender, category, clothing sizes, shoe sizes, waist
+ * sizes, and colors. Also includes a Reset button to clear all active filters.
+ *
+ * @param {Object} props
+ * @param {Function} props.clearFilters - Clears all active filters when invoked.
+ * @param {Function} props.toggleFilter - Toggles a filter option on/off.`
+ * @param {Object} props.filters - The current filter state object.
+ * @param {Array<Object>} props.products - Product list used to derive dynamic filters.
+ * @param {Array<string>} props.clothingSizes - Available clothing sizes.
+ * @param {Array<string>} props.shoeSizes - Available shoe sizes.
+ * @param {Array<string>} props.waistSizes - Available waist sizes.
+ */
 
 export const FilterContainer = ({
   clearFilters,

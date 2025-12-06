@@ -4,7 +4,7 @@ import { CloseButton } from "./toast/CloseButton";
  * About Component (Modal Dialog)
  *
  * A reusable modal component that displays an About/Credits section.
- * The modal is conditionally rendered based on the `show` prop and includes
+ * The modal is conditionally rendered based on the show prop and includes
  * a close button, overlay dimming, and proper accessibility attributes.
  *
  * @param {Object} props

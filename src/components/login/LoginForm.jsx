@@ -1,5 +1,13 @@
 import { LoginFormButton } from "./LoginFormButton";
 
+/**
+ * LoginForm Component
+ *
+ * A presentational login form used within the application. This form is purely
+ * cosmetic and does not perform real authentication, as noted in the UI.
+ * Includes fields for email and password along with a styled submit button.
+ */
+
 export const LoginForm = () => {
   return (
     <div className="flex items-center justify-center min-h-[60vh]">

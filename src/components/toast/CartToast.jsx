@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 import { CartToastActionButton } from "./CartToastActionButton";
 import { CartToastItemList } from "./CartToastItemList";
 import { CloseButton } from "./CloseButton";

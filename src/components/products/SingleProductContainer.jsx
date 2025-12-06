@@ -2,6 +2,17 @@ import { Breadcrumbs } from "../breadcrumb/Breadcrumbs";
 import { SingleProductImages } from "./SingleProductImages";
 import { SingleProductSelections } from "./SingleProductSelections";
 
+/**
+ * SingleProductContainer Component
+ *
+ * The main layout wrapper for displaying a single product detail page.
+ * Includes breadcrumbs, product images, and product selection controls
+ * (e.g., size, color, quantity).
+ *
+ * @param {Object} props
+ * @param {Object} props.product - The product being viewed. Passed directly
+ *   to child components for image rendering and selection logic.
+ */
 export const SingleProductContainer = ({ product }) => {
   return (
     <section>

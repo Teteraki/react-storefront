@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 import { useState } from "react";
 import { CartToast } from "../toast/CartToast";
 

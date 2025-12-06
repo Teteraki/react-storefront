@@ -9,7 +9,7 @@ import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
 import { Men } from "./views/Men";
 import { Women } from "./views/Women";
-import { CartProvider } from "./hooks/cartContext";
+import { CartProvider } from "./hooks/CartContext";
 import { CartContainer } from "./components/cart/CartContainer";
 import { AuthProvider } from "./hooks/AuthContext";
 import { LoginForm } from "./components/login/LoginForm";
@@ -17,8 +17,17 @@ import { SingleProduct } from "./views/SingleProduct";
 import { Dashboard } from "./views/Dashboard";
 import { About } from "./components/About";
 
+/**
+ * App Component
+ *
+ * The root component of the application. Sets up global providers (authentication,
+ * cart state), application-wide layout (Navbar, Footer), modal components, and
+ * all React Router route definitions for the React SPA.
+ */
+
 export const App = () => {
   const { products, loading, error } = useProducts();
+  // State for site wide modal popup dialog when About Navbar button is clicked.
   const [showAbout, setShowAbout] = useState(false);
 
   return (

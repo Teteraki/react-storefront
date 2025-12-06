@@ -1,5 +1,19 @@
 import { getCategoryImage } from "../../data/categoryImages";
 
+/**
+ * SingleProductImages Component
+ *
+ * Displays the main product image and a set of static thumbnails for the
+ * single product view. Currently uses category-based fallback images rather
+ * than item-specific image sources.
+ *
+ * @param {Object} props
+ * @param {Object} props.product - The product being displayed.
+ * @param {string} props.product.name - Product name, used for alt text.
+ * @param {string} props.product.category - Used to retrieve a category placeholder image (eventually to be wired up to product image itself).
+ *   via getCategoryImage().
+ */
+
 export const SingleProductImages = ({ product }) => {
   console.log(product, product.category);
   return (

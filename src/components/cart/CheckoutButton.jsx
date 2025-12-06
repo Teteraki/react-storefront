@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/cartContext";
 
+/**
+ * CheckoutButton Component
+ *
+ * Renders a styled button-like link that completes the checkout process.
+ * When clicked, it clears the user's cart and redirects them to the home page.
+ */
+
 export const CheckoutButton = () => {
   const { clearCart } = useCart();
 

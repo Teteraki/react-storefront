@@ -1,10 +1,31 @@
 import { useMemo, useState } from "react";
 import { ProductContainer } from "../products/ProductContainer";
-import { FilterDropdown } from "./filter/FilterDropdown";
 import { SelectedFilterPill } from "./filter/SelectedFilterPill";
 import { SortDropdown } from "./sort/SortDropdown";
 import { FilterContainer } from "./filter/FilterContainer";
 
+/**
+ * BrowseContainer Component
+ *
+ * Main container for the product browsing experience. Handles:
+ * - Deriving size options from products (clothing, shoe, waist)
+ * - Managing filter state (gender, category, colors, sizes)
+ * - Applying filters and sorting to the product list
+ * - Rendering the results via ProductContainer
+ *
+ * @param {Object} props
+ * @param {Array<Object>} props.products - Full list of products to browse.
+ * @param {boolean} props.loading - Whether products are currently loading.
+ * @param {Object|null} props.error - Error object if product fetching failed.
+ * @param {string} [props.category] - Optional initial category filter (e.g., from route).
+ * @param {string} [props.gender] - Optional initial gender filter (e.g., from route).
+ *
+ * Notes:
+ * - Uses useMemo to derive:
+ *    - clothingSizes: alphabetic sizes (XS–XL, One Size, etc.) in a custom order.
+ *    - shoeSizes: numeric sizes < 20.
+ *    - waistSizes: numeric sizes >= 20
+ */
 export const BrowseContainer = ({
   products,
   loading,

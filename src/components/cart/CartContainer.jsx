@@ -2,6 +2,13 @@ import { useCart } from "../../hooks/cartContext";
 import { CartItemList } from "./CartItemList";
 import { CartSummary } from "./CartSummary";
 
+/**
+ * CartContainer Component
+ *
+ * The main container for the shopping cart page. Displays all items currently
+ * in the user's cart, allows quantity updates and item removal, and shows a
+ * summarized breakdown of the cart totals.
+ */
 export const CartContainer = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 

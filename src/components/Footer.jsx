@@ -4,7 +4,7 @@
  * Renders the global site footer, including:
  * - The project title and author attribution
  * - A short description of the tech stack used
- * - A list of external links such as GitHub and a personal site. (will break these into smaller components)
+ * - A list of external links such as GitHub and a personal site. (will break these into smaller components).
  *
  */
 

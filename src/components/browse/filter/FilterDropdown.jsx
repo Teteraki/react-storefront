@@ -1,3 +1,17 @@
+/**
+ * FilterDropdown Component
+ *
+ * A collapsible filter panel used in the product browse page. Displays a list
+ * of checkbox options that allow users to refine product results by category,
+ * size, color, gender, etc.
+ *
+ * @param {Object} props
+ * @param {string} props.title - The display label for the dropdown section.
+ * @param {Array<string>} props.filters - List of available filter values.
+ * @param {Array<string>} props.selected - Array of currently selected values.
+ * @param {Function} props.onToggle - Callback function when a filter option is toggled.
+ */
+
 export const FilterDropdown = ({ title, filters, selected, onToggle }) => {
   return (
     <details className="overflow-hidden rounded-sm border border-gray-300 [&_summary::-webkit-details-marker]:hidden">
