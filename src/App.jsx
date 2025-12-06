@@ -23,6 +23,7 @@ import { About } from "./components/About";
  * The root component of the application. Sets up global providers (authentication,
  * cart state), application-wide layout (Navbar, Footer), modal components, and
  * all React Router route definitions for the React SPA.
+ *
  */
 
 export const App = () => {
