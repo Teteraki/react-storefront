@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 import { CartToast } from "../toast/CartToast";
 
 export const QuickAddToCart = ({ product }) => {

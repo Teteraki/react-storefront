@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 import { CartItemList } from "./CartItemList";
 import { CartSummary } from "./CartSummary";
 

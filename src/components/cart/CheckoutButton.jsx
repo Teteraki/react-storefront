@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../hooks/cartContext";
+import { useCart } from "../../hooks/CartContext";
 
 /**
  * CheckoutButton Component
