@@ -2,14 +2,13 @@ import "./App.css";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useProducts } from "./hooks/useProducts";
-
+import { CartProvider } from "./hooks/CartContext";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./views/Home";
 import { Browse } from "./views/Browse";
 import { Men } from "./views/Men";
 import { Women } from "./views/Women";
-import { CartProvider } from "./hooks/CartContext";
 import { CartContainer } from "./components/cart/CartContainer";
 import { AuthProvider } from "./hooks/AuthContext";
 import { LoginForm } from "./components/login/LoginForm";
