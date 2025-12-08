@@ -29,7 +29,7 @@ export const CartContainer = () => {
 
           <div className="mt-8">
             {cartItems.length === 0 ? (
-              <p className="text-sm text-gray-500">Your cart is empty.</p>
+              <p className="text-sm text-gray-500 h-100">Your cart is empty.</p>
             ) : (
               <>
                 <CartItemList
