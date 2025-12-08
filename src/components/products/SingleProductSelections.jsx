@@ -1,13 +1,18 @@
 import { useCart } from "../../hooks/CartContext";
 import { useState } from "react";
 import { CartToast } from "../toast/CartToast";
+import { useAuth } from "../../hooks/AuthContext";
+import { AdminInfo } from "./AdminInfo";
 
 export const SingleProductSelections = ({ product }) => {
   const { addToCart } = useCart();
+  const { loggedIn } = useAuth();
+
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState(null);
   const [color, setColor] = useState(null);
   const [showToast, setShowToast] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
   const canAdd = product && size && color && quantity > 0;
 
   const handleConfirmAdd = () => {
@@ -86,7 +91,24 @@ export const SingleProductSelections = ({ product }) => {
         >
           Add to cart (BREaK THESE UINTO COMPONENTS!!)
         </button>
+
+        {loggedIn && (
+          <button
+            key="admin_info"
+            type="button"
+            onClick={() => setShowAdmin(true)}
+            className="mt-1 w-full rounded-md px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
+            title="Admin Info"
+          >
+            Admin Info
+          </button>
+        )}
       </div>
+      <AdminInfo
+        product={product}
+        show={showAdmin}
+        onClose={() => setShowAdmin(false)}
+      />
       <CartToast show={showToast} onClose={() => setShowToast(false)} />
     </section>
   );
