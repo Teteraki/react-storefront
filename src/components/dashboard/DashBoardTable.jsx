@@ -1,3 +1,4 @@
+// modified from hyper UI
 export const DashboardTable = ({ columns, rows }) => {
   return (
     <div className="overflow-x-auto">
