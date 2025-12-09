@@ -4,6 +4,12 @@ A modern e-commerce storefront and analytics dashboard built with **React**, fea
 
 ---
 
+## Deployment
+
+The application is deployed using **Vercel**, which handles the production build and hosting. URL: https://react-storefront-gilt.vercel.app/
+
+---
+
 ## Assignment Overview
 
 This project was created as a course assignment and implemented as a full React-based storefront. It includes:
@@ -69,8 +75,4 @@ The full project source is available on GitHub:
 
 **https://github.com/Teteraki/react-storefront**
 
----
 
-## Deployment
-
-The application is deployed using **Vercel**, which handles the production build and hosting.
