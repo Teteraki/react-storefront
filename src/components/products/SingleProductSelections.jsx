@@ -26,10 +26,10 @@ export const SingleProductSelections = ({ product }) => {
         <h1 className="text-l font-bold text-gray-900 sm:text-3xl">
           {product.name}
         </h1>
-        <h2>${product.price.toFixed(2)}</h2>
-        <p>{product.description}</p>
-        <p>{product.material}</p>
-        <form>
+        <h2 className="p-4">${product.price.toFixed(2)}</h2>
+        <p className="px-4">{product.description}</p>
+        <p className="py-4">{product.material}</p>
+        <form className="py-10">
           <label>Quantity: </label>
           <input
             type="number"
@@ -38,7 +38,7 @@ export const SingleProductSelections = ({ product }) => {
             onChange={(e) => {
               setQuantity(Number(e.target.value));
             }}
-            onKeyDown={(e) => e.preventDefault()} // disable typing
+            onKeyDown={(e) => e.preventDefault()}
             id={`qty-${product.id}`}
             className="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600"
           />
@@ -50,7 +50,7 @@ export const SingleProductSelections = ({ product }) => {
               type="button"
               onClick={() => setSize(s)}
               className={
-                "px-2 py-1 text-xs rounded-full border transition " +
+                "px-2 py-  rounded-full border transition " +
                 (size === s
                   ? "border-teal-500 bg-teal-50 text-teal-700"
                   : "border-gray-300 hover:bg-gray-100")
@@ -83,13 +83,13 @@ export const SingleProductSelections = ({ product }) => {
           onClick={handleConfirmAdd}
           disabled={!canAdd}
           className={
-            "mt-1 w-full rounded-md px-2 py-1 text-xs font-medium " +
+            "mt-1 w-full rounded-md px-2 py-4 font-medium " +
             (canAdd
               ? "bg-teal-600 text-white hover:bg-teal-700"
               : "bg-gray-200 text-gray-400 cursor-not-allowed")
           }
         >
-          Add to cart (BREaK THESE UINTO COMPONENTS!!)
+          Add to cart
         </button>
 
         {loggedIn && (
@@ -97,7 +97,7 @@ export const SingleProductSelections = ({ product }) => {
             key="admin_info"
             type="button"
             onClick={() => setShowAdmin(true)}
-            className="mt-1 w-full rounded-md px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
+            className="mt-1 w-full rounded-md px-2 py-4 bg-teal-800 text-white hover:bg-teal-700"
             title="Admin Info"
           >
             Admin Info
