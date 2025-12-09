@@ -55,7 +55,6 @@ export const CartToast = ({ show, onClose }) => {
               href="/cart"
               text={`View my cart (${cartCount})`}
             />
-            <CartToastActionButton href="/checkout" text="Checkout now!" />
           </div>
         </div>
       </div>
