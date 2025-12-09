@@ -1,37 +1,51 @@
-import { PieChart, Pie } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
-// #region Sample data
-const data01 = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-  { name: "Group E", value: 278 },
-  { name: "Group F", value: 189 },
-];
+export const PieChartComponent = ({ data, isAnimationActive = true }) => {
+  const total = data.reduce((sum, item) => sum + item.value, 0);
 
-// #endregion
-export const PieChartComponent = ({ isAnimationActive = true }) => (
-  <PieChart
-    style={{
-      width: "100%",
-      maxWidth: "500px",
-      maxHeight: "80vh",
-      aspectRatio: 1,
-    }}
-    responsive
-    margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
-  >
-    <Pie
-      data={data01}
-      dataKey="value"
-      nameKey="name"
-      cx="50%"
-      cy="50%"
-      label
-      outerRadius="50%"
-      fill="#8884d8"
-      isAnimationActive={isAnimationActive}
-    />
-  </PieChart>
-);
+  const renderLabel = ({ name, value }) => {
+    if (!total) return name;
+    const percent = ((value / total) * 100).toFixed(1);
+    return `${name} ${percent}%`;
+  };
+
+  const colors = ["#0ea5e9", "#22c55e", "#fbbf24", "#f97316", "#a855f7"]; // Re
+
+  return (
+    <ResponsiveContainer width="100%" height={360}>
+      <PieChart margin={{ top: 32, right: 80, bottom: 32, left: 80 }}>
+        <Tooltip
+          formatter={(value) => value.toLocaleString()}
+          labelFormatter={(label) => `${label}`}
+        />
+
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius="70%"
+          label={renderLabel}
+          isAnimationActive={isAnimationActive}
+        >
+          {data.map((entry, idx) => (
+            <Cell key={entry.name} fill={colors[idx % colors.length]} />
+          ))}
+        </Pie>
+
+        {total > 0 && (
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={{ fontSize: "1.1rem", fontWeight: 600 }}
+          >
+            {total.toLocaleString()}
+          </text>
+        )}
+      </PieChart>
+    </ResponsiveContainer>
+  );
+};

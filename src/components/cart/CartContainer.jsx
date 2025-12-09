@@ -13,7 +13,7 @@ export const CartContainer = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
   const cartSubtotal = cartItems.reduce(
-    (sum, item) => sum + (item.price ?? 0) * item.quantity,
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 

@@ -43,7 +43,22 @@ export const AdminInfo = ({ product, show, onClose }) => {
           Admin Info
         </h2>
 
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-800">
+          <div>
+            <h3 className="font-semibold text-gray-900">Domestic Sales</h3>
+            <p>{product.sales.domestic}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900">International Sales</h3>
+            <p>{product.sales.international}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900">Total Sales</h3>
+            <p>{product.sales.total}</p>
+          </div>
+
           {/* Gross Revenue */}
           <div>
             <h3 className="font-semibold text-gray-900">Domestic Gross</h3>
@@ -97,7 +112,7 @@ export const AdminInfo = ({ product, show, onClose }) => {
           </div>
 
           {/* Bar chart */}
-          <div className="sm:col-span-2 mt-4">
+          <div className="col-span-2 mt-4">
             <BarChartComponent
               data={formatBarChartData(product)}
               series={[
