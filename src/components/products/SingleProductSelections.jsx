@@ -1,0 +1,128 @@
+import { useCart } from "../../hooks/CartContext";
+import { useState } from "react";
+import { CartToast } from "../toast/CartToast";
+import { useAuth } from "../../hooks/AuthContext";
+import { AdminInfo } from "./AdminInfo";
+
+/**
+ * SingleProductSelections Component
+ *
+ * Renders the interactive purchase controls for a single product:
+ * - Displays product name, price, description, and material.
+ * - Allows the user to select quantity, size, and color.
+ * - Adds the configured product to the cart.
+ * - Shows a toast notification when an item is added.
+ * - For authenticated users (admin), shows an "Admin Info" button that opens
+ *   an admin-only modal with additional product details.
+
+ */
+
+export const SingleProductSelections = ({ product }) => {
+  const { addToCart } = useCart();
+  const { loggedIn } = useAuth();
+
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState(null);
+  const [color, setColor] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+  const canAdd = product && size && color && quantity > 0;
+
+  const handleConfirmAdd = () => {
+    addToCart(product, size, color, quantity);
+    setShowToast(true);
+  };
+
+  return (
+    <section>
+      <div className="mt-6 items-center justify-center gap-4 text-center p-4">
+        <h1 className="text-l font-bold text-gray-900 sm:text-3xl">
+          {product.name}
+        </h1>
+        <h2 className="p-4">${product.price.toFixed(2)}</h2>
+        <p className="px-4">{product.description}</p>
+        <p className="py-4">{product.material}</p>
+        <form className="py-10">
+          <label>Quantity: </label>
+          <input
+            type="number"
+            min={1}
+            value={quantity}
+            onChange={(e) => {
+              setQuantity(Number(e.target.value));
+            }}
+            onKeyDown={(e) => e.preventDefault()}
+            id={`qty-${product.id}`}
+            className="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600"
+          />
+        </form>
+        <div className=" flex justify-center gap-2 mb-2">
+          {product.sizes.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setSize(s)}
+              className={
+                "px-2 py-  rounded-full border transition " +
+                (size === s
+                  ? "border-teal-500 bg-teal-50 text-teal-700"
+                  : "border-gray-300 hover:bg-gray-100")
+              }
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+        <div className="flex justify-center gap-2 mb-4">
+          {product.color.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setColor(c.name)}
+              className={
+                "h-7 w-7 rounded-full border transition " +
+                (color === c.name
+                  ? "border-teal-500 ring ring-teal-300"
+                  : "border-gray-300 hover:ring-2 hover:ring-gray-200")
+              }
+              style={{ backgroundColor: c.hex }}
+              title={c.name}
+            ></button>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleConfirmAdd}
+          disabled={!canAdd}
+          className={
+            "mt-1 w-full rounded-md px-2 py-4 font-medium " +
+            (canAdd
+              ? "bg-teal-600 text-white hover:bg-teal-700"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed")
+          }
+        >
+          Add to cart
+        </button>
+
+        {loggedIn && (
+          <button
+            key="admin_info"
+            type="button"
+            onClick={() => setShowAdmin(true)}
+            className="mt-1 w-full rounded-md px-2 py-4 bg-teal-800 text-white hover:bg-teal-700"
+            title="Admin Info"
+          >
+            Admin Info
+          </button>
+        )}
+      </div>
+      <AdminInfo
+        product={product}
+        show={showAdmin}
+        onClose={() => setShowAdmin(false)}
+      />
+      <CartToast show={showToast} onClose={() => setShowToast(false)} />
+    </section>
+  );
+};
