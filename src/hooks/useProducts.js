@@ -21,16 +21,20 @@ const adminInfoCalc = (data) => {
     const intl_profit = intl_gross - intl_cost;
     const total_profit = total_gross - total_cost;
 
+    const round = (num) => Number(num.toFixed(2));
+
     return {
-      dom_gross,
-      intl_gross,
-      total_gross,
-      dom_cost,
-      intl_cost,
-      total_cost,
-      dom_profit,
-      intl_profit,
-      total_profit,
+      dom_gross: round(dom_gross),
+      intl_gross: round(intl_gross),
+      total_gross: round(total_gross),
+
+      dom_cost: round(dom_cost),
+      intl_cost: round(intl_cost),
+      total_cost: round(total_cost),
+
+      dom_profit: round(dom_profit),
+      intl_profit: round(intl_profit),
+      total_profit: round(total_profit),
     };
   };
 
