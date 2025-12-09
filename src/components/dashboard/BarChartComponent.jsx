@@ -8,6 +8,23 @@ import {
   Bar,
 } from "recharts";
 
+/**
+ * BarChartComponent
+ *
+ * A reusable wrapper around Recharts' <BarChart> component.
+ * This component renders a configurable multi-series bar chart,
+ * used in the analytics dashboard for visualizing
+ * comparisons such as category totals, gender performance,
+ * or any dataset with multiple numeric series.
+ *
+ *
+ * @param {Object} props
+ * @param {Array<Object>} props.data
+ *   The dataset for the chart. Each object should contain:
+ *   - name: category or label for the X-axis
+ *   - Additional numeric fields for each series (e.g., "sales", "profit")
+ */
+
 export const BarChartComponent = ({
   data,
   series,

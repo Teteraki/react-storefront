@@ -1,5 +1,20 @@
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
+/**
+ * PieChartComponent
+ *
+ * A reusable wrapper around Recharts <PieChart> for displaying
+ * proportional data distributions. Used in the Sales
+ * Dashboard to visualize breakdowns such as sales-by-gender or
+ * sales-by-category.
+ *
+ * @param {Object} props
+ * @param {Array<Object>} props.data
+ *   The dataset to visualize. Each item should include:
+ *   - name: string — label for the slice
+ *   - value: number — numeric value used to compute slice size
+ */
+
 export const PieChartComponent = ({ data, isAnimationActive = true }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 

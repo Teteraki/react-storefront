@@ -1,6 +1,20 @@
 import { BarChartComponent } from "../dashboard/BarChartComponent";
 import { CloseButton } from "../toast/CloseButton";
 
+/**
+ * AdminInfo Component
+ *
+ * A modal dialog that displays administrative analytics for a single product.
+ * This component is only accessible to authenticated users and provides
+ * detailed breakdowns beyond what is shown on the main product page.
+ *
+ * * @param {Object} props
+ * @param {Object} props.product - the product in scope.
+ * @param {boolean} props.show - Controls visibility of the modal. When false, nothing is rendered.
+ *
+ * @param {Function} props.onClose -Callback invoked to close the modal.
+ */
+
 export const AdminInfo = ({ product, show, onClose }) => {
   if (!show || !product) return null;
 

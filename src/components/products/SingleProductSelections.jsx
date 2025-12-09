@@ -4,6 +4,19 @@ import { CartToast } from "../toast/CartToast";
 import { useAuth } from "../../hooks/AuthContext";
 import { AdminInfo } from "./AdminInfo";
 
+/**
+ * SingleProductSelections Component
+ *
+ * Renders the interactive purchase controls for a single product:
+ * - Displays product name, price, description, and material.
+ * - Allows the user to select quantity, size, and color.
+ * - Adds the configured product to the cart.
+ * - Shows a toast notification when an item is added.
+ * - For authenticated users (admin), shows an "Admin Info" button that opens
+ *   an admin-only modal with additional product details.
+
+ */
+
 export const SingleProductSelections = ({ product }) => {
   const { addToCart } = useCart();
   const { loggedIn } = useAuth();

@@ -3,6 +3,24 @@ import { DashBoardCard } from "./DashBoardCard";
 import { DashboardTable } from "./DashBoardTable";
 import { Link } from "react-router-dom";
 
+/**
+ * DashBoardContainer Component
+ *
+ * The main analytics view for the storefront's Sales Dashboard.
+ * This component aggregates product data and transforms it into
+ * various datasets used for tables, charts, and summary views.
+ *
+ * It renders:
+ * - Top 10 Selling Products (table)
+ * - Top 10 Most Profitable Products (table)
+ * - Sales & Profit summary by category (table)
+ * - Sales distribution by gender (pie chart)
+ * - Sales distribution by category (pie chart)
+ *
+ * @param {Object} props
+ * @param {Array<Object>} props.products - Full list of products passed into the dashboard.
+ */
+
 export const DashBoardContainer = ({ products }) => {
   if (!products) return null;
 
