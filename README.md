@@ -1,18 +1,76 @@
-# React + Vite
+# React Storefront & Sales Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce storefront and analytics dashboard built with **React**, featuring product browsing, filtering, cart/checkout functionality, and visual sales analytics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Assignment Overview
 
-## React Compiler
+This project was created as a course assignment and implemented as a full React-based storefront. It includes:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Product browsing and category filtering
+- Cart and checkout functionality
+- An admin dashboard with sales and profitability insights
+- Charts and tables summarizing key e-commerce metrics
+- Fully responsive UI built with Tailwind CSS
 
-Note: This will impact Vite dev & build performances.
+The dashboard visualizes sales distribution, top-selling products, and category-level profitability.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+- **Vite** – fast development server and build tool
+- **React** – component-based UI framework
+- **React Router** – routing for Home, Browse, Product Details, and Dashboard
+- **Tailwind CSS** – utility-first CSS styling
+- **Recharts** – chart library for pie charts, bar charts, and other data visualizations
+  - Documentation: https://recharts.github.io/
+- **Vercel** – deployment and hosting for the production application
+
+---
+
+## UI Component Markup Inspiration
+
+Many UI elements in this project (cards, forms, tables, filters, pills, alerts, modals, and dropdowns) are **custom-built components** inspired by Tailwind component patterns from:
+
+- **HyperUI** – https://www.hyperui.dev/
+
+All UI components were rewritten and adapted specifically for this assignment.
+
+---
+
+## Data & Image Credits
+
+- Product data, pricing, and sales numbers are fictional and used solely for demonstration and coursework purposes.
+- Product and banner images were sourced from:
+  - Pixabay – https://pixabay.com/
+  - Unsplash – https://unsplash.com/
+
+Images follow the Pixabay and Unsplash free content licenses.
+
+---
+
+## About the Developer
+
+This project was designed and developed by **Dylan Sanders**.  
+It focuses on:
+
+- Modern front-end development practices
+- Reusable component architecture
+- Tailwind CSS interface design
+- Data visualization for e-commerce analytics
+
+---
+
+## Source Code
+
+The full project source is available on GitHub:
+
+**https://github.com/Teteraki/react-storefront**
+
+---
+
+## Deployment
+
+The application is deployed using **Vercel**, which handles the production build and hosting.
