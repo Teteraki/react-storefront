@@ -1,5 +1,5 @@
 import { useCart } from "../../hooks/CartContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CartToast } from "../toast/CartToast";
 import { useAuth } from "../../hooks/AuthContext";
 import { AdminInfo } from "./AdminInfo";
@@ -27,6 +27,15 @@ export const SingleProductSelections = ({ product }) => {
   const [showToast, setShowToast] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
   const canAdd = product && size && color && quantity > 0;
+
+  useEffect(() => {
+    // Reset selections when product changes
+    setQuantity(1);
+    setSize(null);
+    setColor(null);
+    setShowToast(false);
+    setShowAdmin(false);
+  }, [product.id]);
 
   const handleConfirmAdd = () => {
     addToCart(product, size, color, quantity);
